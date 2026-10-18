@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bravo · Videojuegos hechos en Latinoamérica</title>
+<meta name="description" content="Bravo es una tienda de videojuegos de PC que pone al frente a los estudios latinoamericanos. Demo académica sin transacciones.">
+<meta name="theme-color" content="#E0B23C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E0B23C'/%3E%3Cpath d='M0 23 32 15v6L0 29z' fill='%23146B6E'/%3E%3Cpath d='M9 5h8.5c4 0 6 2 6 4.6 0 1.8-1 3-2.6 3.6 2 .5 3.3 2 3.3 4.2 0 3.2-2.4 5.1-6.5 5.1H9zm5 4v3.6h2.6c1.3 0 2-.6 2-1.8S17.9 9 16.6 9zm0 7.2v4h3c1.4 0 2.2-.7 2.2-2s-.8-2-2.2-2z' fill='%230E0E0E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="data.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#app">Saltar al contenido</a>
+<p class="demo">Demo académica · Sin cobros reales · Precios y requisitos ilustrativos</p>
+
+<header class="top">
+  <a class="logo" href="#/" aria-label="Bravo, inicio">Bravo</a>
+  <nav class="nav" aria-label="Principal">
+    <a href="#/catalogo">Catálogo</a>
+    <a href="#/catalogo?oferta=1">Ofertas</a>
+    <a href="#/estudios">Estudios</a>
+    <a href="#/publicar">Publica</a>
+  </nav>
+  <form class="search" role="search" data-form="search">
+    <label class="sr" for="q">Buscar juegos</label>
+    <input id="q" name="q" type="search" placeholder="Buscar juego o estudio" autocomplete="off">
+    <kbd title="Atajo de teclado">/</kbd>
+    <button aria-label="Buscar"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></button>
+  </form>
+  <a class="icon-link search-link" href="#/catalogo" aria-label="Buscar en el catálogo"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></a>
+  <a class="icon-link" href="#/cuenta" data-account aria-label="Tu cuenta"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></a>
+  <a class="icon-link" href="#/carrito" data-cart aria-label="Carrito"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg><span class="badge" data-cart-count hidden></span></a>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="page">Bravo necesita JavaScript activado para navegar entre pantallas.</p></noscript>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <a class="logo" href="#/">Bravo</a>
+      <p class="foot-line">La tienda de videojuegos de PC donde los estudios latinoamericanos van al frente.</p>
+    </div>
+    <nav aria-label="Tienda">
+      <h2>Tienda</h2>
+      <ul><li><a href="#/catalogo">Catálogo</a></li><li><a href="#/catalogo?oferta=1">Ofertas</a></li><li><a href="#/estudios">Hecho en Latinoamérica</a></li><li><a href="#/cuenta">Mi biblioteca</a></li></ul>
+    </nav>
+    <nav aria-label="Ayuda">
+      <h2>Ayuda</h2>
+      <ul><li><a href="#/ayuda">Pagos y seguridad</a></li><li><a href="#/ayuda">Reembolsos</a></li><li><a href="#/ayuda">Contacto</a></li><li><a href="#/publicar">Publica tu juego</a></li></ul>
+    </nav>
+    <form class="news form" data-form="newsletter">
+      <h2>Ofertas en tu correo</h2>
+      <p>Lanzamientos de estudios latinoamericanos y descuentos según lo que juegas.</p>
+      <div class="news-row">
+        <label class="sr" for="news-mail">Tu correo</label>
+        <input id="news-mail" name="email" type="email" placeholder="tu@correo.com" autocomplete="email" required>
+        <button class="btn">Suscribirme</button>
+      </div>
+      <p class="status" role="status"></p>
+    </form>
+    <p class="foot-legal">Bravo es una demo académica: no vende juegos ni procesa pagos. Los juegos y marcas pertenecen a sus estudios; las portadas son tipográficas y los precios, ilustrativos.</p>
+  </div>
+</footer>
+
+<p class="sr" id="live" role="status" aria-live="polite"></p>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M2.5 4h2.8l2.3 11h10.6l2.3-8H6.6"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5S3.5 15.4 3.5 9.3A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8.5 2.3c0 6.1-8.5 11.2-8.5 11.2z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 19.5 12 7 19.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11m-5-5 5 5 5-5M4.5 20h15"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 4.8 4.8L19.5 7"/></symbol>
+</svg>
+</body>
+</html>
