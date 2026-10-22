@@ -126,7 +126,7 @@ Paleta de title card: tres campos saturados sobre tinta y papel.
 
 **Display Font:** Anton (respaldo: Arial con size-adjust 70.9%)
 **Body Font:** Barlow 400 y 600 (respaldo: Arial con size-adjust 95.1% / 90.4%)
-**Label Font:** Barlow Condensed 600 y 700 (respaldo: Arial Bold con size-adjust 67.5%)
+**Label Font:** Barlow Condensed 700 (respaldo: Arial Bold con size-adjust 67.5%)
 
 **Character:** Anton pone la voz de cartel, comprimida y pesada; Barlow Condensed rotula controles y metadatos con el mismo esqueleto que el Barlow de lectura.
 
