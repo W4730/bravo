@@ -7,12 +7,500 @@
 <meta name="description" content="Bravo es una tienda de videojuegos de PC que pone al frente a los estudios latinoamericanos. Demo académica sin transacciones.">
 <meta name="theme-color" content="#E0B23C">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E0B23C'/%3E%3Cpath d='M0 23 32 15v6L0 29z' fill='%23146B6E'/%3E%3Cpath d='M9 5h8.5c4 0 6 2 6 4.6 0 1.8-1 3-2.6 3.6 2 .5 3.3 2 3.3 4.2 0 3.2-2.4 5.1-6.5 5.1H9zm5 4v3.6h2.6c1.3 0 2-.6 2-1.8S17.9 9 16.6 9zm0 7.2v4h3c1.4 0 2.2-.7 2.2-2s-.8-2-2.2-2z' fill='%230E0E0E'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css">
-<script src="data.js" defer></script>
-<script src="app.js" defer></script>
+<link rel="preload" href="https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3Kz-C8.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2z3bWuQ.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/barlow/v13/7cHpv4kjgoGqM7E_DMs5.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fuentes de Google Fonts declaradas aquí (sin la hoja intermedia) y respaldos con métricas medidas contra Arial: el cambio de fuente no mueve el layout. */
+@font-face { font-family: 'Anton'; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3Kz-C8.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow Condensed'; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B4873z3bWuQ.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow Condensed'; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2z3bWuQ.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/barlow/v13/7cHpv4kjgoGqM7E_DMs5.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E30-8s51os.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Anton Fallback'; src: local('Arial'), local('ArialMT'); size-adjust: 70.9%; ascent-override: 166%; descent-override: 46.5%; line-gap-override: 0%; }
+@font-face { font-family: 'Barlow Condensed Fallback'; font-weight: 600 700; src: local('Arial Bold'), local('Arial-BoldMT'); size-adjust: 67.5%; ascent-override: 148%; descent-override: 29.6%; line-gap-override: 0%; }
+@font-face { font-family: 'Barlow Fallback'; font-weight: 400; src: local('Arial'), local('ArialMT'); size-adjust: 95.1%; ascent-override: 105%; descent-override: 21%; line-gap-override: 0%; }
+@font-face { font-family: 'Barlow Fallback'; font-weight: 600; src: local('Arial Bold'), local('Arial-BoldMT'); size-adjust: 90.4%; ascent-override: 110.6%; descent-override: 22.1%; line-gap-override: 0%; }
+
+/* Bravo · mundo «title card»: campos planos de color, barras que cortan el cuadro, mayúsculas condensadas. */
+:root {
+  --paper: #F1E6CF;
+  --paper-2: #E7D8B6;
+  --paper-3: #FBF5E8;
+  --ink: #0E0E0E;
+  --ink-2: #4A4136;
+  --mustard: #E0B23C;
+  --brick: #AA3529;
+  --teal: #105F62;
+  --display: 'Anton', 'Anton Fallback', sans-serif;
+  --cond: 'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif;
+  --body: 'Barlow', 'Barlow Fallback', sans-serif;
+  --gut: clamp(16px, 4vw, 48px);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --skew: skewX(-12deg);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+body {
+  min-height: 100vh; display: flex; flex-direction: column;
+  background: var(--paper) var(--grain); color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--body);
+  caret-color: var(--brick); scrollbar-color: var(--ink) var(--paper-2);
+  -webkit-font-smoothing: antialiased;
+}
+/* reserva la pantalla para que el pie no salte cuando app pinta el contenido */
+main { flex: 1; min-height: 100vh; min-height: 100svh; }
+::selection { background: var(--ink); color: var(--mustard); }
+a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+svg { display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+ul, ol { padding: 0; }
+dd { margin: 0; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.s-b :focus-visible, .s-t :focus-visible, .s-k :focus-visible, .foot :focus-visible, .hero-copy :focus-visible { outline-color: var(--mustard); }
+[tabindex="-1"]:focus { outline: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: 12px; top: -80px; z-index: 60; padding: 10px 16px; background: var(--ink); color: var(--mustard); font: 700 1rem/1 var(--cond); text-transform: uppercase; }
+.skip:focus { top: 12px; }
+.ic { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; }
+
+/* esquemas de color: campo, título, segunda línea, barra, texto */
+.s-m { --f: var(--mustard); --t1: var(--ink); --t2: var(--brick); --b: var(--teal); --tx: var(--ink); }
+.s-b { --f: var(--brick); --t1: var(--paper); --t2: var(--ink); --b: var(--mustard); --tx: var(--paper); }
+.s-t { --f: var(--teal); --t1: var(--paper); --t2: var(--mustard); --b: var(--brick); --tx: var(--paper); }
+.s-k { --f: var(--ink); --t1: var(--mustard); --t2: var(--paper); --b: var(--brick); --tx: var(--paper); }
+.s-c { --f: var(--paper); --t1: var(--ink); --t2: var(--brick); --b: var(--teal); --tx: var(--ink); }
+
+/* ---------- cabecera ---------- */
+.demo { padding: 6px var(--gut); background: var(--ink); color: var(--mustard); text-align: center; font: 700 .9rem/1.4 var(--cond); letter-spacing: .03em; }
+.top {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; gap: clamp(8px, 2vw, 28px);
+  padding: 10px var(--gut); background: var(--paper) var(--grain); border-bottom: 3px solid var(--ink);
+}
+.logo { position: relative; isolation: isolate; padding: 4px 8px 0; font: 400 2.1rem/1 var(--display); text-transform: uppercase; text-decoration: none; letter-spacing: .01em; }
+.logo::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; bottom: 3px; height: 42%; background: var(--mustard); transform: var(--skew); }
+.nav { display: flex; gap: 4px; }
+.nav a { position: relative; isolation: isolate; padding: 9px 12px 8px; font: 700 1.05rem/1 var(--cond); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+.nav a::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--mustard); transform: var(--skew) scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+.nav a::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 1px; height: 3px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+.nav a:hover::after { transform: scaleX(1); }
+.nav a[aria-current]::before { transform: var(--skew) scaleX(1); }
+.search { display: flex; align-items: center; width: min(340px, 100%); height: 44px; margin-left: auto; border: 2px solid var(--ink); background: var(--paper-3); }
+.search:focus-within { outline: 3px solid var(--teal); outline-offset: 2px; }
+.search input[type=search] { flex: 1; min-height: 0; border-radius: 0; min-width: 0; height: 100%; padding: 0 12px; border: 0; background: none; outline: none; }
+.search kbd { margin-right: 8px; padding: 3px 7px 2px; border: 1.5px solid var(--ink-2); color: var(--ink-2); font: 700 .8rem/1 var(--cond); }
+.search button { display: grid; place-items: center; height: 100%; padding: 0 10px; border: 0; border-left: 2px solid var(--ink); background: none; cursor: pointer; }
+.search button:hover { background: var(--mustard); }
+.icon-link { position: relative; display: grid; place-items: center; width: 44px; height: 44px; text-decoration: none; }
+.icon-link:hover .ic { stroke-width: 2.6; }
+.search-link { display: none; }
+.badge { position: absolute; top: 0; right: -4px; min-width: 20px; padding: 3px 5px 2px; background: var(--brick); color: var(--paper); font: 700 .8rem/1 var(--cond); text-align: center; }
+.badge[hidden] { display: none; }
+.stamp { animation: stamp .4s var(--ease); }
+@keyframes stamp { from { transform: scale(1.7) rotate(-10deg); } }
+
+/* ---------- tipografía y bloques comunes ---------- */
+.page { width: 100%; max-width: 1360px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) var(--gut) clamp(56px, 8vw, 104px); }
+.page--tight { padding-top: 0; }
+.page--narrow { max-width: 640px; }
+.page--read { max-width: 900px; }
+.page-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 24px; margin-bottom: 32px; padding-bottom: 14px; border-bottom: 3px solid var(--ink); }
+.page-head h1 { font: 400 clamp(2.6rem, 7vw, 5rem)/1.05 var(--display); text-transform: uppercase; letter-spacing: .005em; }
+.page-head--lede { display: grid; gap: 16px; }
+.page-head--lede p { max-width: 60ch; font-size: 1.15rem; }
+.count { color: var(--ink-2); font: 700 1.1rem/1 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.sec-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: clamp(48px, 7vw, 88px) 0 24px; }
+.sec-head h2 { font: 400 clamp(1.9rem, 3.6vw, 2.8rem)/.95 var(--display); text-transform: uppercase; letter-spacing: .005em; }
+.sec-head .rule { flex: 1; min-width: 24px; height: 3px; background: currentColor; }
+.h2 { margin-bottom: 14px; font: 700 1.5rem/1.1 var(--cond); letter-spacing: .04em; text-transform: uppercase; }
+.lede { max-width: 58ch; font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.45; }
+.note { max-width: 65ch; color: var(--ink-2); font-size: .92rem; }
+.meta { color: var(--ink-2); font-size: .92rem; }
+:is(.s-m, .s-b, .s-t, .s-k, .s-c) :is(.note, .meta) { color: inherit; }
+.buy :is(.note, .meta) { color: var(--ink-2); }
+.status { font-size: .95rem; font-weight: 600; }
+.status:empty { display: none; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
+.link { padding: 0; border: 0; background: none; font: 700 1rem/1.2 var(--cond); letter-spacing: .06em; text-transform: uppercase; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .25em; cursor: pointer; justify-self: start; }
+.link:hover { text-decoration-thickness: 4px; }
+.empty { display: grid; justify-items: start; gap: 14px; padding: 32px 0; }
+.empty h1, .empty h2 { font: 400 clamp(2rem, 5vw, 3.4rem)/.92 var(--display); text-transform: uppercase; }
+.empty p { max-width: 50ch; }
+.empty-inline { max-width: 65ch; margin-bottom: 20px; padding: 18px; border: 2px dashed var(--ink-2); }
+
+/* ---------- botones: paralelogramos ---------- */
+.btn {
+  --bg: var(--mustard); --fg: var(--ink); --bar: var(--ink);
+  position: relative; isolation: isolate;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 26px 11px; border: 0; background: none; color: var(--fg);
+  font: 700 1.05rem/1 var(--cond); letter-spacing: .07em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer;
+}
+.btn::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--bg); border: 2px solid var(--line, transparent); transform: var(--skew); }
+.btn::after { content: ''; position: absolute; left: 4px; right: -4px; bottom: -8px; height: 4px; background: var(--bar); transform: var(--skew) scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+.btn:hover::after { transform: var(--skew) scaleX(1); }
+.btn:active::before { filter: brightness(.92); }
+.btn .ic { width: 16px; height: 16px; }
+.btn--ghost { --bg: transparent; --line: currentColor; --fg: currentColor; --bar: currentColor; }
+.btn--ink { --bg: var(--ink); --fg: var(--mustard); --bar: var(--ink); }
+.btn--block { display: flex; width: 100%; }
+.btn--sm { min-height: 38px; padding: 8px 16px 7px; font-size: .95rem; }
+.btn--lg { min-height: 56px; font-size: 1.2rem; }
+.hero-copy .btn--ghost, .s-b .btn--ghost, .s-t .btn--ghost, .s-k .btn--ghost { --fg: var(--paper); }
+.buy .btn--ghost { --fg: var(--ink); }
+
+/* ---------- portada: title card ---------- */
+.tc { --r: var(--a); container-type: inline-size; position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: var(--f); color: var(--t1); border: 2px solid var(--ink); }
+.tc::before { content: ''; position: absolute; inset: 0; z-index: 3; background: var(--grain); pointer-events: none; }
+.tc-bar { position: absolute; left: -20%; top: 60%; width: 140%; height: 15%; background: var(--b); transform: rotate(var(--r)); transition: transform .5s var(--ease); }
+.tc::after { content: ''; position: absolute; left: -20%; top: 79%; width: 140%; height: 3.5%; background: var(--t1); transform: rotate(var(--r)) translateX(-101%); transition: transform .45s var(--ease); }
+.tc-t { position: absolute; z-index: 1; top: 8%; left: 8%; right: 6%; display: flex; flex-direction: column; align-items: flex-start; font: 400 calc(var(--fs) * 1cqi)/.84 var(--display); letter-spacing: -.005em; text-transform: uppercase; overflow-wrap: anywhere; }
+.tc-t span:nth-child(even) { color: var(--t2); }
+.tc-t span + span { margin-top: -.03em; }
+.tc-n { position: absolute; z-index: 1; right: 7%; bottom: 5%; display: flex; flex-direction: column; align-items: flex-end; font: 700 6.5cqi/1 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.tc-n b { padding-bottom: .02em; border-bottom: 1.6cqi solid currentColor; font: 400 24cqi/.88 var(--display); letter-spacing: 0; }
+/* variantes de composición: título al centro con número arriba, o número a la izquierda con la barra invertida */
+.tc.v1 .tc-t { top: 30%; }
+.tc.v1 .tc-bar { top: 74%; }
+.tc.v1::after { top: 90%; }
+.tc.v1 .tc-n { top: 6%; bottom: auto; }
+.tc.v2 .tc-n { left: 7%; right: auto; align-items: flex-start; }
+.tc.v2 { --r: calc(var(--a) * -1); }
+.tc.v2::after { top: 48%; }
+.tc--mini { width: 56px; border-width: 1.5px; }
+.tc--mini .tc-n { display: none; }
+
+.card:hover .tc::after, .card:focus-visible .tc::after, .hero-feat:hover .tc::after { transform: rotate(var(--r)) translateX(0); }
+.card:hover .tc-bar, .hero-feat:hover .tc-bar { transform: rotate(var(--r)) translateY(-6%); }
+.card:hover .tc-n b, .hero-feat:hover .tc-n b { animation: stamp .4s var(--ease); }
+
+/* ---------- tarjetas y grillas ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr)); gap: 36px 22px; }
+.card { display: flex; flex-direction: column; gap: 6px; color: inherit; text-decoration: none; }
+.card h3 { margin-top: 8px; font: 700 1.25rem/1.05 var(--cond); letter-spacing: .02em; text-transform: uppercase; }
+.card:hover h3 { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .15em; }
+.price { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font: 600 1.15rem/1 var(--cond); letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+.price b { font-weight: 700; }
+.price s { color: var(--ink-2); font-size: .9em; font-weight: 600; }
+.price .off { padding: 4px 6px 3px; background: var(--brick); color: var(--paper); font-weight: 700; }
+.price--big { font-size: 1.3rem; }
+.price--big b { font: 400 3rem/1 var(--display); letter-spacing: .01em; }
+.rail { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(190px, 220px); gap: 22px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
+.rail > * { scroll-snap-align: start; }
+
+/* ---------- inicio ---------- */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: clamp(24px, 4vw, 64px);
+  padding: clamp(28px, 5vw, 64px) var(--gut) 0; background: var(--mustard) var(--grain); border-bottom: 3px solid var(--ink);
+}
+/* la barra corta el titular: se mide en em del h1 para cruzar «TU PRÓXIMO / JUEGO» en cualquier ancho */
+.hero-bar { position: absolute; z-index: -1; left: -10%; right: -10%; top: calc(clamp(28px, 5vw, 64px) + .5em); height: .85em; font-size: clamp(3.4rem, 8.6vw, 6rem); background: var(--teal); transform: rotate(-8deg); transform-origin: calc(8.33% + var(--gut) + 2.5em) 50%; }
+.hero-t { display: flex; flex-direction: column; font: 400 clamp(3.4rem, 8.6vw, 6rem)/.86 var(--display); letter-spacing: -.005em; text-transform: uppercase; }
+.hero-t .alt { color: var(--brick); }
+.hero-copy {
+  grid-column: 1; align-self: end; margin: clamp(24px, 4vw, 48px) 0 0 calc(-1 * var(--gut));
+  padding: clamp(28px, 3vw, 44px) clamp(28px, 5vw, 64px) clamp(28px, 4vw, 48px) var(--gut);
+  background: var(--brick) var(--grain); color: var(--paper); clip-path: polygon(0 0, 100% 9%, 95% 100%, 0 100%);
+}
+.hero-copy p { max-width: 44ch; margin-bottom: 26px; font-size: clamp(1.1rem, 1.5vw, 1.3rem); }
+.hero-feat { grid-column: 2; grid-row: 1 / span 2; align-self: end; justify-self: end; display: block; width: min(100%, 400px, calc((100vh - 300px) * .75)); min-width: 260px; margin-bottom: -3px; color: var(--ink); text-decoration: none; }
+.feat-info { display: grid; gap: 6px; padding: 14px 18px 18px; background: var(--paper) var(--grain); border: 2px solid var(--ink); border-top: 0; }
+.feat-info strong { font: 400 2.2rem/1 var(--display); text-transform: uppercase; }
+.hero-feat:hover strong { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: .12em; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-bar { animation: bar-in .9s var(--ease) both; }
+  @keyframes bar-in { from { transform: rotate(-8deg) translateX(-105%); } }
+}
+
+.band { background: var(--f) var(--grain); color: var(--tx); }
+.band-in { max-width: 1360px; margin: 0 auto; padding: clamp(44px, 7vw, 96px) var(--gut); }
+.latam .band-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px 64px; align-items: start; }
+.latam h2 { color: var(--mustard); font: 400 clamp(2.8rem, 6vw, 4.8rem)/1.05 var(--display); text-transform: uppercase; }
+.latam-head p { max-width: 44ch; margin: 18px 0 28px; font-size: 1.15rem; }
+.countries { list-style: none; border-top: 3px solid var(--paper); }
+.countries a { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 12px 0 10px; border-bottom: 2px solid color-mix(in srgb, var(--paper) 45%, transparent); text-decoration: none; }
+.c-name { font: 400 clamp(1.8rem, 3.4vw, 2.6rem)/1 var(--display); text-transform: uppercase; transition: color .2s; }
+.c-n { font: 700 1.05rem/1 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.countries a:hover .c-name { color: var(--mustard); }
+
+.why { list-style: none; border-top: 3px solid var(--ink); }
+.why li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 10px 40px; padding: 26px 0; border-bottom: 2px solid var(--ink); }
+.why h3 { grid-row: span 2; font: 400 clamp(1.7rem, 3vw, 2.4rem)/1 var(--display); text-transform: uppercase; }
+.why li > :not(h3) { grid-column: 2; max-width: 56ch; }
+
+.cta .band-in { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; }
+.cta h2 { font: 400 clamp(2.4rem, 5.4vw, 4.4rem)/1.05 var(--display); text-transform: uppercase; }
+.cta p { max-width: 44ch; margin-bottom: 26px; font-size: 1.15rem; }
+
+/* ---------- catálogo ---------- */
+.cat { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 44px; align-items: start; }
+.filters-wrap > summary { display: none; }
+.filters { position: sticky; top: 96px; display: grid; gap: 20px; }
+
+/* ---------- formularios ---------- */
+.form { display: grid; gap: 18px; max-width: 640px; }
+.form--wide { max-width: none; grid-template-columns: 1fr 1fr; }
+.form--wide .full { grid-column: 1 / -1; }
+.field { display: grid; gap: 6px; min-width: 0; padding: 0; border: 0; }
+.field > span, .field > legend { padding: 0; font: 700 .85rem/1.1 var(--cond); letter-spacing: .09em; text-transform: uppercase; }
+.field > legend { margin-bottom: 10px; }
+.field small { color: var(--ink-2); font-size: .85rem; }
+input:not([type=checkbox], [type=radio]), select, textarea {
+  width: 100%; min-height: 48px; padding: 10px 12px; border: 2px solid var(--ink); border-radius: 0;
+  background: var(--paper-3); color: var(--ink); font: 400 1rem/1.3 var(--body);
+}
+textarea { min-height: 120px; resize: vertical; }
+select { appearance: none; padding-right: 40px; background: var(--paper-3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E0E0E' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 18px; }
+input:not([type=checkbox], [type=radio]):focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+input:user-invalid, textarea:user-invalid, select:user-invalid { border-color: var(--brick); }
+::placeholder { color: #6B6156; opacity: 1; }
+input[type=checkbox], input[type=radio] { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--teal); }
+.check { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px 6px; }
+.chip { position: relative; cursor: pointer; }
+.chip input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.chip span { position: relative; isolation: isolate; display: block; padding: 7px 14px 6px; font: 700 .95rem/1 var(--cond); letter-spacing: .05em; text-transform: uppercase; }
+.chip span::before { content: ''; position: absolute; inset: 0; z-index: -1; border: 2px solid var(--ink); transform: var(--skew); }
+.chip:hover span::before { background: var(--paper-2); }
+.chip input:checked + span::before { background: var(--mustard); }
+.chip input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+/* ---------- ficha del juego ---------- */
+.game-top { position: relative; background: var(--f) var(--grain); color: var(--tx); }
+.game-top::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: var(--b); clip-path: polygon(0 100%, 100% 0, 100% 100%); }
+.game-in {
+  max-width: 1360px; margin: 0 auto; padding: 22px var(--gut) clamp(48px, 6vw, 72px);
+  display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr) minmax(280px, 340px);
+  grid-template-areas: "crumbs crumbs crumbs" "cover info buy" "run run run"; gap: 22px clamp(24px, 3vw, 48px); align-items: start;
+}
+.crumbs { grid-area: crumbs; display: flex; flex-wrap: wrap; gap: 8px; font: 700 .95rem/1.2 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.game-cover { grid-area: cover; }
+.game-info { grid-area: info; display: grid; gap: 16px; align-content: start; }
+.game-info h1 { color: var(--t1); font: 400 clamp(2.8rem, 6vw, 5.6rem)/.88 var(--display); text-transform: uppercase; overflow-wrap: anywhere; }
+.by { font: 700 1.1rem/1.3 var(--cond); letter-spacing: .05em; text-transform: uppercase; }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.tags a { display: inline-block; padding: 5px 10px 4px; border: 2px solid currentColor; font: 700 .9rem/1 var(--cond); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; }
+.tags a:hover { background: var(--tx); color: var(--f); }
+.buy { grid-area: buy; display: grid; gap: 14px; padding: 22px; background: var(--paper) var(--grain); color: var(--ink); border: 3px solid var(--ink); }
+.buy :focus-visible { outline-color: var(--ink); }
+.wish { display: inline-flex; align-items: center; gap: 8px; justify-self: start; padding: 6px 0; border: 0; background: none; font: 700 1rem/1 var(--cond); letter-spacing: .05em; text-transform: uppercase; cursor: pointer; }
+.wish .ic { width: 22px; height: 22px; }
+.wish[data-on="true"] .ic { fill: var(--brick); stroke: var(--brick); }
+.wish:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.trust { list-style: none; display: grid; gap: 8px; padding-top: 14px; border-top: 2px solid var(--ink); font-size: .92rem; }
+.trust li, .ticks li { position: relative; padding-left: 22px; }
+.trust li::before, .ticks li::before { content: ''; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; background: var(--teal); transform: var(--skew); }
+/* tira de sesiones: el orden del catálogo, con la actual estampada */
+.run { grid-area: run; display: flex; gap: 4px; margin-top: 6px; padding: 4px 8px 8px; overflow-x: auto; scrollbar-width: thin; }
+.run a { position: relative; isolation: isolate; flex: none; padding: 7px 9px 5px; color: var(--tx); font: 400 1.35rem/1 var(--display); text-decoration: none; }
+.run a::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: var(--skew); }
+.run a:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: .12em; }
+.run a[aria-current] { color: var(--f); }
+.run a[aria-current]::before { background: var(--t1); }
+.owned { display: flex; align-items: center; gap: 8px; color: var(--teal); font: 700 1.1rem/1 var(--cond); text-transform: uppercase; }
+
+.game-body { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 56px; align-items: start; }
+.game-body section + section { margin-top: 48px; }
+.game-body p { max-width: 68ch; }
+.reqs { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 14px; }
+.req h3 { padding-bottom: 8px; border-bottom: 3px solid var(--ink); font: 700 1.05rem/1 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.req dl > div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--ink-2); }
+.req dt { color: var(--ink-2); font: 700 .9rem/1.5 var(--cond); letter-spacing: .05em; text-transform: uppercase; }
+.studio-box { position: sticky; top: 96px; display: grid; gap: 10px; padding: 22px; background: var(--paper-3); border: 3px solid var(--ink); }
+.studio-name { font: 400 1.9rem/1 var(--display); text-transform: uppercase; }
+.studio-name a { text-decoration: none; }
+.studio-box .btn { justify-self: start; margin-top: 6px; }
+.reviews { list-style: none; display: grid; gap: 18px; margin-bottom: 26px; }
+.review { display: grid; gap: 6px; padding-top: 12px; border-top: 2px solid var(--ink); }
+.rv-tag { display: inline-block; margin-left: 8px; padding: 3px 8px 2px; background: var(--teal); color: var(--paper); font: 700 .8rem/1 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.rv-tag--no { background: var(--brick); }
+
+/* ---------- estudios ---------- */
+.country { margin-top: 56px; }
+.country:first-of-type { margin-top: 8px; }
+.country h2 { padding-bottom: 10px; border-bottom: 3px solid var(--ink); font: 400 clamp(2.4rem, 6vw, 4.4rem)/.9 var(--display); text-transform: uppercase; }
+.country--intl h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.country--intl .note { margin-top: 10px; }
+.studio-list { list-style: none; }
+.studio-row { display: grid; grid-template-columns: 64px minmax(0, 1fr) 24px; gap: 20px; align-items: center; padding: 16px 0; border-bottom: 2px solid var(--ink); text-decoration: none; }
+.studio-row .tc--mini { width: 64px; }
+.sr-body { display: grid; gap: 4px; }
+.sr-body strong { font: 700 1.45rem/1.05 var(--cond); letter-spacing: .02em; text-transform: uppercase; }
+.studio-row:hover strong { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .15em; }
+.studio-row > .ic { transition: transform .3s var(--ease); }
+.studio-row:hover > .ic { transform: translateX(6px); }
+.studio-top h1, .confirm-top h1, .pub-top h1 { max-width: 16ch; color: var(--t1); font: 400 clamp(3rem, 8vw, 6rem)/1.05 var(--display); text-transform: uppercase; }
+.studio-top .crumbs { margin-bottom: 18px; }
+.studio-top .lede, .confirm-top .lede, .pub-top .lede { margin: 20px 0 12px; }
+
+/* ---------- carrito, pago, recibo ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: clamp(28px, 4vw, 56px); align-items: start; }
+.summary { position: sticky; top: 96px; display: grid; gap: 14px; padding: 22px; background: var(--paper-3); border: 3px solid var(--ink); }
+.lines { list-style: none; border-top: 3px solid var(--ink); }
+.line { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 2px solid var(--ink); }
+.lines--compact .line { grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; padding: 10px 0; }
+.lines--compact .tc--mini { width: 44px; }
+.line-t { font: 700 1.15rem/1.1 var(--cond); letter-spacing: .02em; text-transform: uppercase; text-decoration: none; }
+.line-t:hover { text-decoration: underline; }
+.icon-btn { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid transparent; background: none; cursor: pointer; }
+.icon-btn:hover { border-color: var(--ink); }
+.totals > div, .kv > div { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-variant-numeric: tabular-nums; }
+.totals .grand { margin-top: 6px; padding-top: 12px; border-top: 3px solid var(--ink); font: 400 1.6rem/1 var(--display); text-transform: uppercase; }
+.kv { margin-bottom: 16px; }
+.kv dt { color: var(--ink-2); font: 700 .9rem/1.5 var(--cond); letter-spacing: .06em; text-transform: uppercase; }
+.kv dd { font-weight: 600; }
+.steps { display: grid; gap: 32px; }
+.step { display: grid; gap: 16px; min-width: 0; padding: 18px 0 0; border: 0; border-top: 3px solid var(--ink); }
+.step legend { float: left; display: flex; align-items: center; gap: 14px; width: 100%; padding: 0; font: 400 1.9rem/1 var(--display); text-transform: uppercase; }
+.step legend + * { clear: both; }
+.step legend b { display: grid; place-items: center; width: 40px; height: 40px; background: var(--ink); color: var(--mustard); font: 400 1.4rem/1 var(--display); transform: var(--skew); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pays { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pay { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: var(--paper-3); border: 2px solid var(--ink); cursor: pointer; }
+.pay strong { display: block; margin-bottom: 4px; font: 700 1.1rem/1.15 var(--cond); letter-spacing: .03em; text-transform: uppercase; }
+.pay small { display: block; color: var(--ink-2); font-size: .9rem; }
+.pay:hover { background: var(--paper-2); }
+.pay:has(:checked) { background: var(--mustard); box-shadow: inset 0 0 0 1px var(--ink); }
+.pay:has(:checked) small { color: var(--ink); }
+.pay:has(:focus-visible) { outline: 3px solid var(--teal); outline-offset: 2px; }
+.howto { list-style: none; display: grid; gap: 12px; counter-reset: s; }
+.howto li { position: relative; min-height: 30px; padding: 2px 0 0 46px; counter-increment: s; }
+.howto li::before { content: counter(s); position: absolute; left: 0; top: 0; display: grid; place-items: center; flex: none; min-width: 30px; height: 30px; background: var(--ink); color: var(--mustard); font: 400 1.1rem/1 var(--display); transform: var(--skew); }
+
+/* ---------- cuenta ---------- */
+.tabs { display: flex; gap: 8px; margin: -8px 0 36px; padding: 2px 6px 6px; overflow-x: auto; }
+.tabs a { position: relative; isolation: isolate; padding: 10px 16px 9px; font: 700 1.05rem/1 var(--cond); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+.tabs a::before { content: ''; position: absolute; inset: 0; z-index: -1; border: 2px solid var(--ink); transform: var(--skew); }
+.tabs a:hover::before { background: var(--paper-2); }
+.tabs a[aria-current]::before { background: var(--ink); }
+.tabs a[aria-current] { color: var(--mustard); }
+.lib { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr)); gap: 32px 22px; }
+.lib-item { display: flex; flex-direction: column; gap: 10px; }
+.lib-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: auto; }
+.table-wrap { overflow-x: auto; border-top: 3px solid var(--ink); }
+.table { width: 100%; min-width: 640px; border-collapse: collapse; }
+.table th { padding: 12px 10px; border-bottom: 2px solid var(--ink); font: 700 .9rem/1.2 var(--cond); letter-spacing: .07em; text-align: left; text-transform: uppercase; }
+.table td { padding: 12px 10px; border-bottom: 1px solid var(--ink-2); vertical-align: top; }
+.table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.settings { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.session { grid-column: 1 / -1; padding-top: 22px; border-top: 3px solid var(--ink); }
+.auth { display: grid; gap: 18px; }
+.auth .tabs { margin: 0; }
+.auth h1 { font: 400 clamp(2.6rem, 7vw, 4rem)/.9 var(--display); text-transform: uppercase; }
+
+/* ---------- ayuda ---------- */
+.help-sec { padding: 36px 0; border-top: 3px solid var(--ink); }
+.page-head + .help-sec { padding-top: 4px; border-top: 0; }
+.help-sec h2 { margin-bottom: 16px; font: 400 clamp(1.9rem, 4vw, 2.8rem)/.95 var(--display); text-transform: uppercase; }
+.help-sec > p { max-width: 65ch; margin-bottom: 16px; }
+.pay-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pay-list li { display: grid; gap: 4px; padding: 14px; background: var(--paper-3); border: 2px solid var(--ink); }
+.pay-list strong { font: 700 1.1rem/1.15 var(--cond); text-transform: uppercase; }
+.ticks { list-style: none; display: grid; gap: 10px; }
+.faq { border-bottom: 2px solid var(--ink); }
+.faq:first-of-type { border-top: 2px solid var(--ink); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; font: 700 1.2rem/1.2 var(--cond); letter-spacing: .02em; text-transform: uppercase; list-style: none; cursor: pointer; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ic { transform: rotate(45deg); transition: transform .3s var(--ease); }
+.faq[open] summary .ic { transform: rotate(0); }
+.faq p { max-width: 65ch; padding-bottom: 18px; }
+
+/* ---------- publica ---------- */
+.pub-top { position: relative; isolation: isolate; overflow: hidden; }
+.pub-top .hero-bar { top: auto; bottom: -40px; background: var(--b); }
+.pub-top .band-in { padding-bottom: clamp(64px, 9vw, 128px); }
+.steps-row { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 18px; border-top: 3px solid var(--ink); }
+.steps-row li { display: grid; gap: 8px; align-content: start; padding: 22px 24px 24px 0; }
+.steps-row li + li { padding-left: 24px; border-left: 2px solid var(--ink); }
+.steps-row b { color: var(--brick); font: 400 4rem/.85 var(--display); }
+.steps-row h3 { font: 700 1.4rem/1 var(--cond); letter-spacing: .03em; text-transform: uppercase; }
+.done { display: grid; gap: 8px; max-width: 640px; padding: 24px; background: var(--mustard) var(--grain); border: 3px solid var(--ink); }
+.done h3 { font: 400 2rem/1 var(--display); text-transform: uppercase; }
+
+/* ---------- pie ---------- */
+.foot { background: var(--ink); color: var(--paper); }
+.foot-in { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.7fr; gap: 40px; max-width: 1360px; margin: 0 auto; padding: 56px var(--gut) 32px; }
+.foot .logo::before { background: var(--brick); }
+.foot-line { max-width: 32ch; margin-top: 14px; color: #D9CFB9; }
+.foot h2 { margin-bottom: 14px; color: var(--mustard); font: 700 .95rem/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; }
+.foot ul { list-style: none; display: grid; gap: 8px; }
+.foot nav a { text-decoration: none; }
+.foot nav a:hover { color: var(--mustard); text-decoration: underline; }
+.news { gap: 12px; }
+.news > p:not(.status) { color: #D9CFB9; }
+.news-row { display: flex; }
+.news-row input:not([type=checkbox], [type=radio]) { flex: 1; background: transparent; border-color: var(--paper); color: var(--paper); }
+.news-row input::placeholder { color: #BDB29C; }
+.news-row .btn { flex: none; margin-left: 10px; }
+.foot-legal { grid-column: 1 / -1; padding-top: 20px; border-top: 1px solid #3A3631; color: #CFC4AD; font-size: .85rem; }
+
+/* ---------- adaptación ---------- */
+@media (max-width: 1099px) {
+  .game-in { grid-template-columns: minmax(160px, 240px) minmax(0, 1fr); grid-template-areas: "crumbs crumbs" "cover info" "buy buy" "run run"; }
+  .buy { max-width: 560px; }
+}
+@media (max-width: 899px) {
+  .hero { grid-template-columns: 1fr; grid-template-rows: auto; padding-bottom: 40px; }
+  .hero-copy { margin: 28px calc(-1 * var(--gut)) 0; padding-right: var(--gut); clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); }
+  .hero-feat { grid-column: 1; grid-row: auto; justify-self: start; width: min(100%, 320px); min-width: 0; margin: 32px 0 0; }
+  .latam .band-in, .cta .band-in, .split, .game-body, .settings { grid-template-columns: 1fr; }
+  .cat { grid-template-columns: 1fr; gap: 24px; }
+  .filters-wrap { background: var(--paper-3); border: 2px solid var(--ink); }
+  .filters-wrap > summary { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; font: 700 1.1rem/1 var(--cond); letter-spacing: .05em; text-transform: uppercase; list-style: none; cursor: pointer; }
+  .filters-wrap > summary::-webkit-details-marker { display: none; }
+  .filters-wrap > summary .ic { transform: rotate(45deg); transition: transform .3s var(--ease); }
+  .filters-wrap[open] > summary .ic { transform: rotate(0); }
+  .filters { position: static; padding: 4px 16px 20px; }
+  .summary, .studio-box { position: static; }
+  .reqs { grid-template-columns: 1fr; }
+  .foot-in { grid-template-columns: 1fr 1fr; }
+  .news { grid-column: 1 / -1; }
+}
+@media (max-width: 759px) {
+  .search { display: none; }
+  .search-link { display: grid; margin-left: auto; }
+  .top { gap: 2px; padding-block: 8px; }
+  .logo { font-size: 1.9rem; }
+  .nav { position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; justify-content: space-around; gap: 0; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); background: var(--ink); }
+  .nav a { padding: 12px 10px 11px; color: var(--paper); font-size: 1rem; }
+  .nav a::after { background: var(--mustard); }
+  .nav a[aria-current] { color: var(--ink); }
+  .nav :focus-visible { outline-color: var(--mustard); }
+  body { padding-bottom: 60px; }
+  .why li { grid-template-columns: 1fr; }
+  .why h3 { grid-row: auto; }
+  .why li > :not(h3) { grid-column: 1; }
+  .steps-row { grid-template-columns: 1fr; }
+  .steps-row li + li { padding-left: 0; border-left: 0; border-top: 2px solid var(--ink); }
+  .form--wide, .row2, .pays, .pay-list { grid-template-columns: 1fr; }
+  .game-in { grid-template-columns: 1fr; grid-template-areas: "crumbs" "cover" "info" "buy" "run"; }
+  .game-cover { width: min(100%, 220px); }
+  .buy { max-width: none; }
+}
+@media (max-width: 520px) {
+  .grid, .lib { grid-template-columns: 1fr 1fr; gap: 28px 14px; }
+  .card h3 { font-size: 1.1rem; }
+  .price { font-size: 1.05rem; }
+  .rail { grid-auto-columns: 62%; }
+  .sec-head .rule { display: none; }
+  .line { grid-template-columns: 48px minmax(0, 1fr) auto; }
+  .line .price { grid-column: 2; }
+  .line .icon-btn { grid-column: 3; grid-row: 1 / span 2; }
+  .foot-in { grid-template-columns: 1fr; }
+  .news-row { flex-direction: column; gap: 12px; }
+  .news-row .btn { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#app">Saltar al contenido</a>
@@ -81,5 +569,720 @@
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11m-5-5 5 5 5-5M4.5 20h15"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 4.8 4.8L19.5 7"/></symbol>
 </svg>
+<script>
+// Catálogo de la demo. Juegos y estudios reales; precios, descuentos y requisitos son ilustrativos.
+// scheme = color de la portada: m mostaza, b ladrillo, t verde azulado, k tinta, c crema.
+// cover = cortes de línea del título en la portada ("|").
+
+const STUDIOS = {
+  'cordero-valbuena': { name: 'Julián Cordero y Sebastián Valbuena', place: 'Quito', country: 'Ecuador', bio: 'Dúo creador de Despelote, una memoria jugable sobre crecer en Quito durante la eliminatoria al Mundial de 2002. Publicado por Panic.' },
+  ironhide: { name: 'Ironhide Game Studio', place: 'Montevideo', country: 'Uruguay', bio: 'Estudio uruguayo creador de la saga Kingdom Rush e Iron Marines, referentes mundiales del tower defense.' },
+  'long-hat-house': { name: 'Long Hat House', place: 'Belo Horizonte', country: 'Brasil', bio: 'Estudio brasileño detrás de Dandara, inspirado en una heroína de la historia afrobrasileña.' },
+  lienzo: { name: 'Lienzo', place: 'Chihuahua', country: 'México', bio: 'Estudio mexicano que convierte culturas y mitos de México en juegos de acción: Mulaka y Aztech Forgotten Gods.' },
+  'pixel-punk': { name: 'Studio Pixel Punk', place: '', country: 'Brasil', bio: 'Estudio independiente brasileño creador de Unsighted.' },
+  behold: { name: 'Behold Studios', place: 'Brasília', country: 'Brasil', bio: 'Estudio brasileño de Chroma Squad y Knights of Pen & Paper.' },
+  aquiris: { name: 'Aquiris', place: 'Porto Alegre', country: 'Brasil', bio: 'Estudio brasileño de Horizon Chase, homenaje a las carreras arcade clásicas.' },
+  leap: { name: 'LEAP Game Studios', place: 'Lima', country: 'Perú', bio: 'Estudio peruano que llevó el folclore amazónico al beat \'em up con Tunche.' },
+  halberd: { name: 'Halberd Studios', place: 'Guadalajara', country: 'México', bio: 'Estudio mexicano de 9 Years of Shadows, financiado por su comunidad en Kickstarter.' },
+  hammer95: { name: 'HAMMER95', place: '', country: 'Brasil', bio: 'Estudio brasileño de shooters retro con humor ochentero.' },
+  'ace-team': { name: 'ACE Team', place: 'Santiago', country: 'Chile', bio: 'Estudio chileno de mundos surrealistas: Zeno Clash, Rock of Ages y The Eternal Cylinder.' },
+  'coffee-powered': { name: 'Coffee Powered Machine', place: '', country: 'Argentina', bio: 'Estudio argentino creador de Okhlos, publicado por Devolver Digital.' },
+  'rogue-snail': { name: 'Rogue Snail', place: '', country: 'Brasil', bio: 'Estudio brasileño de Relic Hunters y Hell Clock.' },
+  'team-cherry': { name: 'Team Cherry', place: 'Adelaida', country: 'Australia', latam: false, bio: 'Pequeño estudio australiano creador de Hollow Knight.' },
+  concernedape: { name: 'ConcernedApe', place: '', country: 'Estados Unidos', latam: false, bio: 'Eric Barone, creador en solitario de Stardew Valley.' },
+  maddy: { name: 'Maddy Makes Games', place: 'Vancouver', country: 'Canadá', latam: false, bio: 'Estudio canadiense creador de Celeste.' },
+  supergiant: { name: 'Supergiant Games', place: 'San Francisco', country: 'Estados Unidos', latam: false, bio: 'Estudio independiente de Bastion, Transistor y Hades.' },
+};
+
+const GAMES = [
+  { id: 'despelote', title: 'Despelote', studio: 'cordero-valbuena', year: 2025, genres: ['Narrativo', 'Aventura'], price: 12.99, off: 0, tier: 'medio', scheme: 'm',
+    blurb: 'Quito, 2001: Ecuador está a un paso de su primer Mundial y Julián, de ocho años, solo piensa en fútbol.',
+    about: 'Una memoria jugable en primera persona sobre la infancia, el barrio y la pelota. Patea, recorre parques y calles de Quito y escucha a la gente mientras el país entero sigue la eliminatoria.' },
+  { id: 'kingdom-rush', title: 'Kingdom Rush', cover: 'Kingdom|Rush', studio: 'ironhide', year: 2014, genres: ['Estrategia'], price: 9.99, off: 60, tier: 'ligero', scheme: 't',
+    blurb: 'Defiende el reino con torres de arqueros, magos, artillería y barracas.',
+    about: 'Coloca y mejora torres a lo largo del camino, llama refuerzos y usa hechizos para frenar oleadas de orcos, trolls y criaturas oscuras. El clásico con el que Ironhide se volvió referente del género.' },
+  { id: 'kingdom-rush-alliance', title: 'Kingdom Rush 5: Alliance TD', cover: 'Kingdom|Rush 5|Alliance', studio: 'ironhide', year: 2024, genres: ['Estrategia'], price: 19.99, off: 25, tier: 'medio', scheme: 'b',
+    blurb: 'Héroes del reino y del ejército oscuro unen fuerzas contra una amenaza común.',
+    about: 'La quinta entrega de la saga reúne héroes de ambos bandos, nuevas torres y campañas para defender Linirea.' },
+  { id: 'dandara', title: 'Dandara', studio: 'long-hat-house', year: 2018, genres: ['Metroidvania', 'Acción'], price: 14.99, off: 50, tier: 'ligero', scheme: 'k',
+    blurb: 'Desafía la gravedad saltando entre suelos, paredes y techos en un mundo al borde del colapso.',
+    about: 'Un metroidvania inspirado en Dandara dos Palmares, heroína afrobrasileña que luchó contra la esclavitud. Explora el mundo de Sal, salta de superficie en superficie y libera a su pueblo de la opresión.' },
+  { id: 'mulaka', title: 'Mulaka', studio: 'lienzo', year: 2018, genres: ['Aventura', 'Acción'], price: 19.99, off: 70, tier: 'medio', scheme: 'c',
+    blurb: 'Acción y aventura en la Sierra Tarahumara, inspirada en la cultura rarámuri.',
+    about: 'Encarna a un chamán rarámuri que se transforma en animales y enfrenta criaturas de la mitología tarahumara para salvar su mundo. Desarrollado en Chihuahua con asesoría de antropólogos.' },
+  { id: 'aztech', title: 'Aztech Forgotten Gods', cover: 'Aztech|Forgotten|Gods', studio: 'lienzo', year: 2022, genres: ['Acción', 'Aventura'], price: 24.99, off: 40, tier: 'exigente', scheme: 't',
+    blurb: 'En una Tenochtitlan de alta tecnología, Achtli enfrenta a dioses colosales con un guantelete ancestral.',
+    about: 'Acción y aventura en 3D que imagina una Mesoamérica futurista. Vuela por la ciudad con un brazo de tecnología ancestral y derriba gigantes en combates a gran escala.' },
+  { id: 'unsighted', title: 'Unsighted', studio: 'pixel-punk', year: 2021, genres: ['RPG', 'Metroidvania'], price: 19.99, off: 35, tier: 'ligero', scheme: 'b',
+    blurb: 'Un action RPG contra el reloj: cada autómata tiene tiempo contado antes de perder la conciencia.',
+    about: 'Explora Arcadia como Alma, una autómata que busca salvar a sus amigos mientras se agota el polvo de meteoro que los mantiene vivos. Decide a quién ayudar con el poco tiempo que queda.' },
+  { id: 'chroma-squad', title: 'Chroma Squad', cover: 'Chroma|Squad', studio: 'behold', year: 2015, genres: ['Estrategia', 'RPG'], price: 14.99, off: 75, tier: 'ligero', scheme: 'm',
+    blurb: 'Dirige tu propio programa de superhéroes al estilo sentai.',
+    about: 'Cinco dobles de acción renuncian y abren su propio estudio de televisión. Combates tácticos por turnos, utilería hecha a mano, actores y una audiencia que hay que conquistar episodio a episodio.' },
+  { id: 'horizon-chase-turbo', title: 'Horizon Chase Turbo', cover: 'Horizon|Chase|Turbo', studio: 'aquiris', year: 2018, genres: ['Carreras'], price: 19.99, off: 60, tier: 'medio', scheme: 'k',
+    blurb: 'Carreras arcade inspiradas en los clásicos de los 80 y 90.',
+    about: 'Recorre circuitos de todo el mundo con autos de colores vivos, banda sonora de Barry Leitch y multijugador local en pantalla dividida.' },
+  { id: 'tunche', title: 'Tunche', studio: 'leap', year: 2021, genres: ['Acción', 'Roguelike'], price: 19.99, off: 50, tier: 'medio', scheme: 't',
+    blurb: 'Beat \'em up con elementos roguelite ambientado en la Amazonía peruana.',
+    about: 'Elige entre personajes como Rumi, la chamana, y enfréntate al Tunche, espíritu del folclore amazónico, en peleas dibujadas a mano.' },
+  { id: '9-years-of-shadows', title: '9 Years of Shadows', cover: '9 Years|of|Shadows', studio: 'halberd', year: 2023, genres: ['Metroidvania', 'Acción'], price: 19.99, off: 30, tier: 'ligero', scheme: 'c',
+    blurb: 'Metroidvania en pixel art: Europa explora Talos, un castillo maldito, para devolverle el color al mundo.',
+    about: 'Combina armaduras con poderes elementales y combates exigentes junto a un compañero inesperado. Creado en Guadalajara y financiado por la comunidad en Kickstarter.' },
+  { id: 'mullet-mad-jack', title: 'Mullet Mad Jack', cover: 'Mullet|Mad Jack', studio: 'hammer95', year: 2024, genres: ['Shooter', 'Acción'], price: 13.99, off: 20, tier: 'medio', scheme: 'b',
+    blurb: 'Shooter retro ochentero: cada enemigo derrotado te regala segundos de vida.',
+    about: 'Tienes 10 segundos para seguir eliminando robots millonarios y mantener tu dopamina. Velocidad, humor de anime de los 80 y pisos que se generan uno tras otro.' },
+  { id: 'rock-of-ages', title: 'Rock of Ages', cover: 'Rock|of Ages', studio: 'ace-team', year: 2011, genres: ['Estrategia', 'Acción'], price: 9.99, off: 80, tier: 'medio', scheme: 'm',
+    blurb: 'Lanza una roca gigante a través de la historia del arte para derribar el castillo enemigo.',
+    about: 'Estrategia y caos: construye defensas mientras tu roca rueda cuesta abajo hacia la puerta rival. Humor absurdo con estética de grabados y pinturas clásicas.' },
+  { id: 'eternal-cylinder', title: 'The Eternal Cylinder', cover: 'The|Eternal|Cylinder', studio: 'ace-team', year: 2021, genres: ['Supervivencia', 'Aventura'], price: 29.99, off: 50, tier: 'exigente', scheme: 'k',
+    blurb: 'Guía a los Trebhum mientras un cilindro colosal arrasa con todo a su paso.',
+    about: 'Supervivencia surrealista: tus criaturas mutan al comer y adquieren nuevas habilidades para escapar del cilindro y descubrir su origen.' },
+  { id: 'okhlos', title: 'Okhlos', studio: 'coffee-powered', year: 2016, genres: ['Roguelike', 'Acción'], price: 14.99, off: 60, tier: 'ligero', scheme: 'c',
+    blurb: 'Arma una turba de ciudadanos y filósofos furiosos para derrocar a los dioses del Olimpo.',
+    about: 'Acción roguelite en pixel art: recluta a la multitud, crece en número y lánzala contra guardias, héroes y dioses en ciudades generadas proceduralmente.' },
+  { id: 'hell-clock', title: 'Hell Clock', cover: 'Hell|Clock', studio: 'rogue-snail', year: 2025, genres: ['Roguelike', 'Acción'], price: 19.99, off: 10, tier: 'medio', scheme: 'b',
+    blurb: 'Roguelike de acción contra el reloj inspirado en la Guerra de Canudos, en el sertão brasileño.',
+    about: 'Como Pajeú, desciende al infierno para liberar el alma de su mentor. Cada incursión tiene tiempo limitado y cada muerte te vuelve más fuerte.' },
+  { id: 'hollow-knight', title: 'Hollow Knight', cover: 'Hollow|Knight', studio: 'team-cherry', year: 2017, genres: ['Metroidvania', 'Acción'], price: 14.99, off: 50, tier: 'ligero', scheme: 'k',
+    blurb: 'Explora Hallownest, un antiguo reino de insectos en ruinas.',
+    about: 'Metroidvania de acción dibujado a mano, con combate preciso, decenas de jefes y un mundo enorme por descubrir.' },
+  { id: 'stardew-valley', title: 'Stardew Valley', cover: 'Stardew|Valley', studio: 'concernedape', year: 2016, genres: ['Simulación', 'RPG'], price: 14.99, off: 0, tier: 'ligero', scheme: 'm',
+    blurb: 'Hereda la vieja granja de tu abuelo y empieza una nueva vida en el valle.',
+    about: 'Cultiva, cría animales, pesca, explora minas y conoce al pueblo. Juega en solitario o en cooperativo.' },
+  { id: 'celeste', title: 'Celeste', studio: 'maddy', year: 2018, genres: ['Plataformas'], price: 19.99, off: 75, tier: 'ligero', scheme: 'c',
+    blurb: 'Ayuda a Madeline a llegar a la cima de la montaña Celeste.',
+    about: 'Plataformas preciso y exigente sobre la ansiedad y el autoconocimiento, con más de 700 pantallas y un modo de asistencia.' },
+  { id: 'hades', title: 'Hades', studio: 'supergiant', year: 2020, genres: ['Roguelike', 'Acción'], price: 24.99, off: 40, tier: 'medio', scheme: 't',
+    blurb: 'Escapa del inframundo como Zagreo, hijo de Hades.',
+    about: 'Roguelike de acción con armas legendarias, bendiciones de los dioses del Olimpo y una historia que avanza con cada intento.' },
+];
+
+const REQ_LABELS = ['Sistema', 'Procesador', 'Memoria', 'Gráficos', 'Espacio'];
+const REQS = {
+  ligero: {
+    min: ['Windows 10 de 64 bits', 'Intel Core i3 o AMD Athlon', '4 GB de RAM', 'Intel HD 4000 o equivalente', '2 GB'],
+    rec: ['Windows 10 u 11', 'Intel Core i5 o AMD Ryzen 3', '8 GB de RAM', 'GeForce GTX 750 o equivalente', '2 GB en SSD'],
+  },
+  medio: {
+    min: ['Windows 10 de 64 bits', 'Intel Core i5-4460 o Ryzen 3 1200', '8 GB de RAM', 'GeForce GTX 960 o Radeon RX 470', '15 GB'],
+    rec: ['Windows 10 u 11', 'Intel Core i5-8400 o Ryzen 5 2600', '16 GB de RAM', 'GeForce GTX 1060 o Radeon RX 580', '15 GB en SSD'],
+  },
+  exigente: {
+    min: ['Windows 10 de 64 bits', 'Intel Core i5-6600 o Ryzen 5 1600', '8 GB de RAM', 'GeForce GTX 1050 Ti o Radeon RX 570', '30 GB'],
+    rec: ['Windows 11', 'Intel Core i7-8700 o Ryzen 7 3700X', '16 GB de RAM', 'GeForce RTX 2060 o Radeon RX 6600', '30 GB en SSD'],
+  },
+};
+
+const PAY = [
+  { id: 'tarjeta', name: 'Tarjeta de crédito o débito', desc: 'Visa o Mastercard emitidas en tu país. Pagas en la pasarela segura del proveedor.' },
+  { id: 'billetera', name: 'Billetera digital', desc: 'Paga desde la app de tu banco o tu billetera con un código QR.' },
+  { id: 'transferencia', name: 'Transferencia bancaria', desc: 'Recibes los datos de la cuenta y tu juego se habilita al confirmar el pago.' },
+  { id: 'efectivo', name: 'Efectivo en puntos de pago', desc: 'Generas un código y pagas en tiendas o agencias autorizadas. Se confirma en hasta 24 horas.' },
+];
+
+const COUNTRIES = ['Argentina', 'Bolivia', 'Brasil', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'Ecuador', 'El Salvador', 'Guatemala', 'Honduras', 'México', 'Nicaragua', 'Panamá', 'Paraguay', 'Perú', 'Puerto Rico', 'República Dominicana', 'Uruguay', 'Venezuela', 'Otro país'];
+
+const FAQ = [
+  ['¿Cómo recibo mi juego?', 'Apenas se confirma el pago, el juego aparece en tu biblioteca con su botón de descarga. También recibes un correo con el recibo.'],
+  ['¿Puedo comprar si no vivo en Latinoamérica?', 'Sí. Bravo está pensado para la región, pero cualquier persona puede comprar con tarjeta o billetera digital.'],
+  ['¿Los precios incluyen impuestos?', 'Sí. El precio de cada ficha es el precio final en USD; no se suma nada en el último paso.'],
+  ['¿Qué necesito para jugar?', 'Una PC con Windows que cumpla los requisitos de la ficha. Descargas el instalador desde tu biblioteca.'],
+  ['Tengo un estudio, ¿cómo publico mi juego?', 'Postúlalo desde <a href="#/publicar">Publica en Bravo</a>. Revisamos cada juego y te respondemos por correo.'],
+];
+</script>
+<script>
+'use strict';
+// Bravo: tienda estática con rutas por hash (#/catalogo, #/juego/id...). Sin backend: el estado vive en localStorage.
+
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const app = $('#app');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+const usd = new Intl.NumberFormat('es-EC', { style: 'currency', currency: 'USD' });
+const day = new Intl.DateTimeFormat('es-EC', { dateStyle: 'long' });
+const pad = n => String(n).padStart(2, '0');
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+const ic = name => `<svg class="ic" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+const wide = () => matchMedia('(min-width: 900px)').matches;
+
+GAMES.forEach((g, i) => { g.n = i + 1; });
+const G = Object.fromEntries(GAMES.map(g => [g.id, g]));
+const studioOf = g => STUDIOS[g.studio];
+const isLatam = g => studioOf(g).latam !== false;
+const place = s => [s.place, s.country].filter(Boolean).join(', ');
+const final = g => Math.round(g.price * (100 - g.off)) / 100;
+const total = ids => Math.round(ids.reduce((t, id) => t + final(G[id]), 0) * 100) / 100;
+const genres = () => [...new Set(GAMES.flatMap(g => g.genres))].sort();
+
+// ---------- estado ----------
+const db = {
+  get: (k, d) => { try { return JSON.parse(localStorage.getItem('bravo.' + k)) ?? d; } catch { return d; } },
+  set: (k, v) => { try { localStorage.setItem('bravo.' + k, JSON.stringify(v)); } catch { /* sin almacenamiento: queda en memoria */ } },
+};
+const S = {
+  cart: db.get('cart', []).filter(id => G[id]),
+  wish: db.get('wish', []).filter(id => G[id]),
+  lib: db.get('lib', []).filter(id => G[id]),
+  orders: db.get('orders', []).filter(o => o.items?.every(i => G[i.id])),
+  user: db.get('user', null),
+  reviews: db.get('reviews', {}),
+  prefs: db.get('prefs', { deals: true, latam: true, recs: true, freq: 'semanal', genres: [] }),
+};
+const save = (...keys) => keys.forEach(k => db.set(k, S[k]));
+const say = msg => { $('#live').textContent = msg; };
+
+// ---------- piezas ----------
+function cover(g, cls = '') {
+  const lines = (g.cover || g.title).split('|');
+  const fs = Math.min(30, 160 / Math.max(...lines.map(l => l.length)));
+  return `<div class="tc s-${g.scheme} v${g.n % 3} ${cls}" style="--fs:${fs.toFixed(1)};--a:${-5 - (g.n * 7) % 11}deg" aria-hidden="true"><i class="tc-bar"></i><span class="tc-t">${lines.map(l => `<span>${esc(l)}</span>`).join('')}</span><span class="tc-n">N.º<b>${pad(g.n)}</b></span></div>`;
+}
+const price = (g, cls = '') => `<p class="price ${cls}">${g.off ? `<span class="off">−${g.off}%</span><s><span class="sr">Antes </span>${usd.format(g.price)}</s>` : ''}<b>${g.off ? '<span class="sr">Ahora </span>' : ''}${usd.format(final(g))}</b></p>`;
+const card = g => `<a class="card" href="#/juego/${g.id}">${cover(g)}<h3>${esc(g.title)}</h3><p class="meta">${esc(studioOf(g).name)} · ${esc(studioOf(g).country)}</p>${price(g)}</a>`;
+const grid = list => `<div class="grid">${list.map(card).join('')}</div>`;
+const secHead = (title, href, label) => `<div class="sec-head"><h2>${title}</h2><span class="rule"></span>${href ? `<a class="btn btn--ghost btn--sm" href="${href}">${label}</a>` : ''}</div>`;
+const empty = (title, text, actions) => `<div class="empty"><h2>${title}</h2><p>${text}</p><div class="actions">${actions}</div></div>`;
+const options = (list, current) => list.map(([v, l]) => `<option value="${esc(v)}"${String(current ?? '') === v ? ' selected' : ''}>${esc(l)}</option>`).join('');
+const countryOptions = c => options([['', 'Elige tu país'], ...COUNTRIES.map(x => [x, x])], c);
+
+function recommend(n = 4) {
+  const liked = new Set([...S.lib, ...S.wish].flatMap(id => G[id].genres).concat(S.prefs.genres));
+  return GAMES.filter(g => !S.lib.includes(g.id))
+    .map(g => [g, g.genres.filter(t => liked.has(t)).length * 100 + g.off + (isLatam(g) ? 5 : 0)])
+    .sort((a, b) => b[1] - a[1]).slice(0, n).map(([g]) => g);
+}
+
+function render(title, html) {
+  document.title = title ? `${title} · Bravo` : 'Bravo · Videojuegos hechos en Latinoamérica';
+  app.innerHTML = html;
+  const h1 = $('h1', app);
+  if (h1) h1.tabIndex = -1;
+}
+
+// ---------- pantallas ----------
+function home() {
+  const f = G.despelote, st = studioOf(f);
+  const deals = GAMES.filter(g => g.off).sort((a, b) => b.off - a.off).slice(0, 8);
+  const fresh = [...GAMES].sort((a, b) => b.year - a.year || a.n - b.n).slice(0, 4);
+  const latam = GAMES.filter(isLatam);
+  const byCountry = Object.entries(latam.reduce((m, g) => ({ ...m, [studioOf(g).country]: (m[studioOf(g).country] || 0) + 1 }), {})).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const studios = new Set(latam.map(g => g.studio)).size;
+  render('', `
+  <section class="hero">
+    <i class="hero-bar" aria-hidden="true"></i>
+    <h1 class="hero-t"><span>Tu próximo</span><span>juego</span><span class="alt">se hizo aquí</span></h1>
+    <div class="hero-copy">
+      <p>Videojuegos de PC de estudios latinoamericanos, con precio final en USD pensado para la región y pagos explicados antes de comprar.</p>
+      <div class="actions"><a class="btn" href="#/catalogo">Explorar juegos ${ic('play')}</a><a class="btn btn--ghost" href="#/estudios">Conoce los estudios</a></div>
+    </div>
+    <a class="hero-feat" href="#/juego/${f.id}">${cover(f)}<div class="feat-info"><strong>${f.title}</strong><span class="meta">${esc(st.name)} · ${st.country}</span>${price(f)}</div></a>
+  </section>
+  <div class="page">
+    ${secHead('Ofertas de la semana', '#/catalogo?oferta=1&orden=descuento', 'Ver todas')}
+    <div class="rail">${deals.map(card).join('')}</div>
+    ${secHead('Recién llegados', '#/catalogo?orden=nuevo', 'Ver catálogo')}
+    ${grid(fresh)}
+  </div>
+  <section class="band s-t latam">
+    <div class="band-in">
+      <div class="latam-head">
+        <h2>Hecho en Latinoamérica</h2>
+        <p>${latam.length} juegos de ${studios} estudios en ${byCountry.length} países. Cada ficha te dice quién lo hizo y desde dónde.</p>
+        <a class="btn" href="#/estudios">Conoce los estudios</a>
+      </div>
+      <ul class="countries">${byCountry.map(([c, n]) => `<li><a href="#/catalogo?pais=${encodeURIComponent(c)}"><span class="c-name">${c}</span><span class="c-n">${plural(n, 'juego')}</span></a></li>`).join('')}</ul>
+    </div>
+  </section>
+  <div class="page">
+    ${secHead('Por qué Bravo')}
+    <ul class="why">
+      <li><h3>Precio final en USD</h3><p>Lo que ves en la ficha es lo que pagas, con impuestos incluidos. Sin conversiones ni sorpresas en el último paso.</p></li>
+      <li><h3>Pagos explicados</h3><p>Revisa métodos de pago, reembolsos y protección de datos antes de crear tu cuenta.</p><a class="link" href="#/ayuda">Ver pagos y seguridad</a></li>
+      <li><h3>Estudios al frente</h3><p>Cada juego muestra a su estudio y su ciudad. Comprar aquí es apoyar a quienes crean en la región.</p><a class="link" href="#/estudios">Ver estudios</a></li>
+    </ul>
+  </div>
+  <section class="band s-b cta">
+    <div class="band-in">
+      <h2>¿Haces videojuegos en Latinoamérica?</h2>
+      <div><p>Postula tu juego y llega a jugadores de toda la región, con precios y pagos pensados para ellos.</p><a class="btn btn--ink" href="#/publicar">Publica en Bravo</a></div>
+    </div>
+  </section>`);
+}
+
+function filterGames(p) {
+  const q = norm(p.get('q') || '');
+  const list = GAMES.filter(g =>
+    (!q || norm(`${g.title} ${studioOf(g).name} ${studioOf(g).country} ${g.genres.join(' ')}`).includes(q)) &&
+    (!p.get('genero') || g.genres.includes(p.get('genero'))) &&
+    (!p.get('pais') || studioOf(g).country === p.get('pais')) &&
+    (!p.get('max') || final(g) <= +p.get('max')) &&
+    (!p.get('oferta') || g.off > 0) &&
+    (!p.get('latam') || isLatam(g)));
+  const sorts = { precio: (a, b) => final(a) - final(b), 'precio-desc': (a, b) => final(b) - final(a), descuento: (a, b) => b.off - a.off, nuevo: (a, b) => b.year - a.year };
+  return sorts[p.get('orden')] ? list.sort(sorts[p.get('orden')]) : list;
+}
+
+function catalog(_, p) {
+  const title = p.get('oferta') ? 'Ofertas' : 'Catálogo';
+  const countries = [...new Set(GAMES.map(g => studioOf(g).country))].sort();
+  render(title, `<div class="page">
+    <header class="page-head"><h1>${title}</h1><p class="count" role="status" data-count></p></header>
+    <div class="cat">
+      <details class="filters-wrap"${wide() ? ' open' : ''}><summary>Filtros y orden ${ic('close')}</summary>
+      <form class="filters" data-form="filters">
+        <label class="field"><span>Buscar</span><input id="cq" name="q" type="search" value="${esc(p.get('q'))}" placeholder="Juego, estudio o país" autocomplete="off"></label>
+        <fieldset class="field"><legend>Género</legend><div class="chips">${[['', 'Todos'], ...genres().map(t => [t, t])].map(([v, l]) => `<label class="chip"><input type="radio" name="genero" value="${v}"${(p.get('genero') || '') === v ? ' checked' : ''}><span>${l}</span></label>`).join('')}</div></fieldset>
+        <label class="field"><span>País del estudio</span><select name="pais">${options([['', 'Todos'], ...countries.map(c => [c, c])], p.get('pais'))}</select></label>
+        <label class="field"><span>Precio máximo</span><select name="max">${options([['', 'Cualquiera'], ['5', 'Hasta $5'], ['10', 'Hasta $10'], ['15', 'Hasta $15'], ['20', 'Hasta $20']], p.get('max'))}</select></label>
+        <label class="field"><span>Ordenar por</span><select name="orden">${options([['', 'Destacados'], ['precio', 'Precio: menor a mayor'], ['precio-desc', 'Precio: mayor a menor'], ['descuento', 'Mayor descuento'], ['nuevo', 'Más recientes']], p.get('orden'))}</select></label>
+        <label class="check"><input type="checkbox" name="oferta" value="1"${p.get('oferta') ? ' checked' : ''}> Solo ofertas</label>
+        <label class="check"><input type="checkbox" name="latam" value="1"${p.get('latam') ? ' checked' : ''}> Solo estudios latinoamericanos</label>
+      </form></details>
+      <div data-results></div>
+    </div></div>`);
+  results(p);
+}
+
+function results(p) {
+  const list = filterGames(p);
+  $('[data-count]').textContent = plural(list.length, 'juego');
+  $('[data-results]').innerHTML = list.length ? grid(list)
+    : empty('Ningún juego coincide', 'Prueba con otro género o quita algún filtro.', '<a class="btn btn--ghost" href="#/catalogo">Ver todo el catálogo</a>');
+}
+
+function buyBox(g) {
+  const id = g.id;
+  if (S.lib.includes(id)) return `${price(g, 'price--big')}
+    <p class="owned">${ic('check')} Ya está en tu biblioteca</p>
+    <button class="btn btn--block" data-act="download" data-id="${id}">${ic('download')} Descargar</button>
+    <p class="status" role="status" data-status="${id}"></p>
+    <a class="link" href="#/cuenta/biblioteca">Ir a mi biblioteca</a>`;
+  const wished = S.wish.includes(id);
+  return `${price(g, 'price--big')}
+    <p class="note">Precio final en USD, impuestos incluidos.</p>
+    <button class="btn btn--block" data-act="buy" data-id="${id}">Comprar ahora ${ic('play')}</button>
+    ${S.cart.includes(id) ? `<a class="btn btn--ghost btn--block" href="#/carrito" data-after="cart">${ic('check')} En tu carrito · Ver</a>` : `<button class="btn btn--ghost btn--block" data-act="cart" data-id="${id}">${ic('cart')} Añadir al carrito</button>`}
+    <button class="wish" data-act="wish" data-id="${id}" data-on="${wished}">${ic('heart')} ${wished ? 'En tu lista de deseos' : 'Guardar en lista de deseos'}</button>
+    <ul class="trust"><li>Pagas en la pasarela segura del proveedor</li><li>Reembolso hasta 14 días después de la compra, con menos de 2 horas jugadas</li></ul>
+    <a class="link" href="#/ayuda">Métodos de pago y políticas</a>`;
+}
+
+function reviews(g) {
+  const list = S.reviews[g.id] || [], owned = S.lib.includes(g.id);
+  const items = list.map(r => `<li class="review"><p><strong>${esc(r.name)}</strong> <span class="rv-tag${r.rec ? '' : ' rv-tag--no'}">${r.rec ? 'Lo recomienda' : 'No lo recomienda'}</span></p><p>${esc(r.text)}</p><p class="meta">Compra verificada en Bravo · ${day.format(new Date(r.date))}</p></li>`).join('');
+  const form = owned ? `<form class="form" data-form="review" data-id="${g.id}">
+      <fieldset class="field"><legend>¿Lo recomiendas?</legend><div class="chips"><label class="chip"><input type="radio" name="rec" value="1" checked><span>Sí</span></label><label class="chip"><input type="radio" name="rec" value="0"><span>No</span></label></div></fieldset>
+      <label class="field"><span>Tu reseña</span><textarea name="text" rows="4" minlength="20" maxlength="600" required placeholder="¿Qué te gustó? ¿Qué mejorarías?"></textarea><small>Entre 20 y 600 caracteres.</small></label>
+      <button class="btn">Publicar reseña</button></form>` : '';
+  if (items) return `<ul class="reviews">${items}</ul>${form}`;
+  return `<p class="empty-inline"><strong>Aún no hay reseñas verificadas.</strong> Solo quienes compran en Bravo pueden reseñar, así cada opinión viene de un jugador real.${owned ? ' Escribe la primera.' : ''}</p>${form}`;
+}
+
+function game(id) {
+  const g = G[id];
+  if (!g) return notFound();
+  const st = studioOf(g), req = REQS[g.tier];
+  const similar = GAMES.filter(x => x.id !== id && x.genres.some(t => g.genres.includes(t)))
+    .sort((a, b) => (b.studio === g.studio) - (a.studio === g.studio) || isLatam(b) - isLatam(a)).slice(0, 4);
+  render(g.title, `<article>
+    <section class="game-top s-${g.scheme}">
+      <div class="game-in">
+        <nav class="crumbs" aria-label="Ruta"><a href="#/catalogo">Catálogo</a><span aria-hidden="true">/</span><a href="#/catalogo?genero=${encodeURIComponent(g.genres[0])}">${g.genres[0]}</a></nav>
+        <div class="game-cover">${cover(g)}</div>
+        <div class="game-info">
+          <h1>${esc(g.title)}</h1>
+          <p class="by"><a href="#/estudio/${g.studio}">${esc(st.name)}</a> · ${place(st)} · ${g.year}</p>
+          <ul class="tags">${g.genres.map(t => `<li><a href="#/catalogo?genero=${encodeURIComponent(t)}">${t}</a></li>`).join('')}</ul>
+          <p class="lede">${g.blurb}</p>
+        </div>
+        <aside class="buy" aria-label="Compra">${buyBox(g)}</aside>
+        <nav class="run" aria-label="Todos los juegos en orden">${GAMES.map(x => `<a href="#/juego/${x.id}" title="${esc(x.title)}" aria-label="${esc(x.title)}"${x.id === id ? ' aria-current="page"' : ''}>${pad(x.n)}</a>`).join('')}</nav>
+      </div>
+    </section>
+    <div class="page game-body">
+      <div>
+        <section><h2 class="h2">Sobre el juego</h2><p>${g.about}</p></section>
+        <section><h2 class="h2">Requisitos de PC</h2><p class="note">Valores orientativos en esta demo.</p>
+          <div class="reqs">${[['min', 'Mínimos'], ['rec', 'Recomendados']].map(([k, l]) => `<div class="req"><h3>${l}</h3><dl>${REQ_LABELS.map((x, i) => `<div><dt>${x}</dt><dd>${req[k][i]}</dd></div>`).join('')}</dl></div>`).join('')}</div>
+        </section>
+        <section id="resenas"><h2 class="h2" tabindex="-1">Reseñas verificadas</h2>${reviews(g)}</section>
+      </div>
+      <aside class="studio-box" aria-label="El estudio"><h2 class="studio-name"><a href="#/estudio/${g.studio}">${esc(st.name)}</a></h2><p class="meta">${place(st)}</p><p>${st.bio}</p><a class="btn btn--ghost btn--sm" href="#/estudio/${g.studio}">Ver sus juegos</a></aside>
+    </div>
+    <div class="page page--tight">${secHead('También te puede gustar')}${grid(similar)}</div>
+  </article>`);
+}
+
+const studioRow = s => `<li><a class="studio-row" href="#/estudio/${s.id}">${cover(s.games[0], 'tc--mini')}<span class="sr-body"><strong>${esc(s.name)}</strong><span class="meta">${place(s)} · ${plural(s.games.length, 'juego')}</span><span>${s.bio}</span></span>${ic('play')}</a></li>`;
+
+function studios() {
+  const all = Object.entries(STUDIOS).map(([id, s]) => ({ id, ...s, games: GAMES.filter(g => g.studio === id) })).filter(s => s.games.length);
+  const groups = Object.entries(all.filter(s => s.latam !== false).reduce((m, s) => ({ ...m, [s.country]: [...(m[s.country] || []), s] }), {}))
+    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+  render('Estudios', `<div class="page">
+    <header class="page-head page-head--lede"><h1>Hecho en Latinoamérica</h1><p>Bravo existe para que estos estudios vayan al frente. Conoce quién crea videojuegos en la región, desde dónde y qué puedes jugar de cada uno.</p></header>
+    ${groups.map(([c, list]) => `<section class="country"><h2>${c}</h2><ul class="studio-list">${list.map(studioRow).join('')}</ul></section>`).join('')}
+    <section class="country country--intl"><h2>Invitados internacionales</h2><p class="note">Bravo se enfoca en la región, pero no se cierra a ella.</p><ul class="studio-list">${all.filter(s => s.latam === false).map(studioRow).join('')}</ul></section>
+  </div>`);
+}
+
+function studio(id) {
+  const s = STUDIOS[id];
+  const games = GAMES.filter(g => g.studio === id);
+  if (!s || !games.length) return notFound();
+  render(s.name, `<section class="band s-${games[0].scheme} studio-top"><div class="band-in">
+      <nav class="crumbs" aria-label="Ruta"><a href="#/estudios">Estudios</a><span aria-hidden="true">/</span><span>${s.country}</span></nav>
+      <h1>${esc(s.name)}</h1>
+      <p class="lede">${s.bio}</p>
+      <p class="by">${place(s)} · ${plural(games.length, 'juego')} en Bravo</p>
+    </div></section>
+    <div class="page page--tight">${secHead('Sus juegos')}${grid(games)}</div>`);
+}
+
+function line(g, removable, paid) {
+  return `<li class="line">${cover(g, 'tc--mini')}<div><a class="line-t" href="#/juego/${g.id}">${esc(g.title)}</a><p class="meta">${esc(studioOf(g).name)} · N.º ${pad(g.n)}</p></div>${paid === undefined ? price(g) : `<p class="price"><b>${usd.format(paid)}</b></p>`}${removable ? `<button class="icon-btn" data-act="uncart" data-id="${g.id}" aria-label="Quitar ${esc(g.title)} del carrito">${ic('close')}</button>` : ''}</li>`;
+}
+
+function summary(ids) {
+  const list = ids.map(id => G[id]), sum = total(ids);
+  const full = Math.round(list.reduce((t, g) => t + g.price, 0) * 100) / 100;
+  return `<h2 class="h2">Resumen</h2>
+    <dl class="totals"><div><dt>Precio de lista</dt><dd>${usd.format(full)}</dd></div>${full > sum ? `<div><dt>Descuentos</dt><dd>−${usd.format(full - sum)}</dd></div>` : ''}<div class="grand"><dt>Total final</dt><dd>${usd.format(sum)}</dd></div></dl>
+    <p class="note">Impuestos incluidos. Pagas en USD.</p>`;
+}
+
+function cart() {
+  if (!S.cart.length) return render('Carrito', `<div class="page"><header class="page-head"><h1>Tu carrito</h1></header>
+    ${empty('Tu carrito está vacío', 'Explora el catálogo o revisa tu lista de deseos.', `<a class="btn" href="#/catalogo">Explorar juegos</a>${S.wish.length ? '<a class="btn btn--ghost" href="#/cuenta/deseos">Ver lista de deseos</a>' : ''}`)}</div>`);
+  render('Carrito', `<div class="page">
+    <header class="page-head"><h1>Tu carrito</h1><p class="count">${plural(S.cart.length, 'juego')}</p></header>
+    <div class="split">
+      <ul class="lines">${S.cart.map(id => line(G[id], true)).join('')}</ul>
+      <aside class="summary">${summary(S.cart)}<a class="btn btn--block" href="#/pagar">Continuar al pago ${ic('play')}</a><p class="note">Antes de pagar puedes revisar los <a href="#/ayuda">métodos de pago y reembolsos</a>.</p></aside>
+    </div></div>`);
+}
+
+function checkout() {
+  if (!S.cart.length) return cart();
+  const u = S.user;
+  render('Pagar', `<div class="page">
+    <header class="page-head"><h1>Pagar</h1><p class="count">Sin cobros en esta demo</p></header>
+    <form class="split" data-form="checkout">
+      <div class="steps">
+        <fieldset class="step"><legend><b>1</b> Tu cuenta</legend>
+          ${u ? `<p>Compras como <strong>${esc(u.name)}</strong> (${esc(u.email)}). <a href="#/ingresar?volver=pagar">¿No eres tú?</a></p>`
+            : `<p class="note">Creamos tu cuenta con estos datos para guardar tus juegos. ¿Ya tienes una? <a href="#/ingresar?volver=pagar">Ingresa</a>.</p>
+          <div class="row2"><label class="field"><span>Nombre</span><input name="name" autocomplete="name" required></label><label class="field"><span>Correo</span><input name="email" type="email" autocomplete="email" required></label></div>
+          <label class="field"><span>Contraseña</span><input name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="pw-hint"><small id="pw-hint">Mínimo 8 caracteres.</small></label>`}
+        </fieldset>
+        <fieldset class="step"><legend><b>2</b> Método de pago</legend>
+          <div class="pays">${PAY.map((m, i) => `<label class="pay"><input type="radio" name="method" value="${m.id}" required${i ? '' : ' checked'}><span><strong>${m.name}</strong><small>${m.desc}</small></span></label>`).join('')}</div>
+          <p class="note">En la versión real completarías el pago en la pasarela segura del proveedor. Bravo no guarda los datos de tu tarjeta.</p>
+        </fieldset>
+        <fieldset class="step"><legend><b>3</b> Confirma</legend>
+          <label class="check"><input type="checkbox" name="terms" required> <span>Acepto los términos de compra y la <a href="#/ayuda">política de reembolsos</a>.</span></label>
+          <button class="btn btn--block btn--lg">Confirmar compra · ${usd.format(total(S.cart))}</button>
+          <p class="note">Demo: no se realiza ningún cobro.</p>
+        </fieldset>
+      </div>
+      <aside class="summary"><ul class="lines lines--compact">${S.cart.map(id => line(G[id])).join('')}</ul>${summary(S.cart)}</aside>
+    </form></div>`);
+}
+
+function confirmation(id) {
+  const o = S.orders.find(x => x.id === id);
+  if (!o) return notFound();
+  render('Compra confirmada', `<section class="band s-m confirm-top"><div class="band-in">
+      <h1>¡Compra confirmada!</h1>
+      <p class="lede">Tu pedido <strong>${o.id}</strong> está listo y tus juegos ya aparecen en tu biblioteca.</p>
+      <p class="note">En la versión real te enviaríamos este recibo a ${esc(S.user?.email || 'tu correo')}.</p>
+    </div></section>
+    <div class="page"><div class="split">
+      <section class="receipt"><h2 class="h2">Recibo</h2>
+        <dl class="kv"><div><dt>Pedido</dt><dd>${o.id}</dd></div><div><dt>Fecha</dt><dd>${day.format(new Date(o.date))}</dd></div><div><dt>Método</dt><dd>${PAY.find(m => m.id === o.method)?.name || ''}</dd></div></dl>
+        <ul class="lines lines--compact">${o.items.map(i => line(G[i.id], false, i.price)).join('')}</ul>
+        <dl class="totals"><div class="grand"><dt>Total pagado</dt><dd>${usd.format(o.total)}</dd></div></dl>
+      </section>
+      <aside class="summary"><h2 class="h2">Cómo jugar</h2>
+        <ol class="howto"><li>Abre <a href="#/cuenta/biblioteca">tu biblioteca</a>.</li><li>Pulsa <strong>Descargar</strong> para bajar el instalador.</li><li>Instala y juega. La compra queda guardada en tu cuenta.</li></ol>
+        <a class="btn btn--block" href="#/cuenta/biblioteca">Ir a mi biblioteca</a>
+        <p class="note">¿Algo salió mal? <a href="#/ayuda">Escribe a soporte</a> con tu número de pedido.</p>
+      </aside>
+    </div></div>`);
+}
+
+function login(_, p) {
+  const reg = p.get('modo') === 'registro';
+  const back = /^[a-z/]+$/.test(p.get('volver') || '') ? p.get('volver') : 'cuenta';
+  const q = 'volver=' + encodeURIComponent(back);
+  render(reg ? 'Crear cuenta' : 'Ingresar', `<div class="page page--narrow"><div class="auth">
+    <nav class="tabs" aria-label="Tipo de acceso"><a href="#/ingresar?${q}"${reg ? '' : ' aria-current="page"'}>Ingresar</a><a href="#/ingresar?modo=registro&${q}"${reg ? ' aria-current="page"' : ''}>Crear cuenta</a></nav>
+    <h1>${reg ? 'Crea tu cuenta' : 'Hola de nuevo'}</h1>
+    <p class="lede">${reg ? 'Solo lo necesario para guardar tus juegos y tu lista de deseos.' : 'Ingresa para ver tu biblioteca y seguir con tu compra.'}</p>
+    <form class="form" data-form="login" data-back="${back}">
+      ${reg ? '<label class="field"><span>Nombre de usuario</span><input name="name" autocomplete="nickname" required></label>' : ''}
+      <label class="field"><span>Correo</span><input name="email" type="email" autocomplete="email" required></label>
+      <label class="field"><span>Contraseña</span><input name="password" type="password" autocomplete="${reg ? 'new-password' : 'current-password'}" minlength="8" required></label>
+      ${reg ? `<label class="field"><span>País</span><select name="country">${countryOptions('')}</select></label><label class="check"><input type="checkbox" name="news" value="1"> <span>Quiero recibir ofertas según los géneros que juego</span></label>` : ''}
+      <button class="btn btn--block">${reg ? 'Crear cuenta' : 'Ingresar'}</button>
+      <p class="note">Demo: tus datos se guardan solo en este navegador y la contraseña no se almacena.</p>
+    </form>
+  </div></div>`);
+}
+
+const tabs = {
+  biblioteca: () => (S.lib.length ? `<ul class="lib">${S.lib.map(id => { const g = G[id]; return `<li class="lib-item">${cover(g)}<div><a class="line-t" href="#/juego/${id}">${esc(g.title)}</a><p class="meta">${esc(studioOf(g).name)}</p></div><div class="lib-actions"><button class="btn btn--sm" data-act="download" data-id="${id}">${ic('download')} Descargar</button><a class="link" href="#/juego/${id}">Reseñar</a></div><p class="status" role="status" data-status="${id}"></p></li>`; }).join('')}</ul>`
+    : empty('Aún no tienes juegos', 'Tu primera compra aparecerá aquí, lista para descargar.', '<a class="btn" href="#/catalogo">Explorar juegos</a>'))
+    + secHead('Recomendado para ti', '#/catalogo', 'Ver catálogo') + grid(recommend()),
+  deseos: () => S.wish.length ? `<ul class="lib">${S.wish.map(id => { const g = G[id]; return `<li class="lib-item">${cover(g)}<div><a class="line-t" href="#/juego/${id}">${esc(g.title)}</a>${price(g)}</div><div class="lib-actions">${S.lib.includes(id) ? '<span class="meta">Ya lo tienes</span>' : S.cart.includes(id) ? '<a class="btn btn--sm btn--ghost" href="#/carrito" data-after="cart">En tu carrito</a>' : `<button class="btn btn--sm" data-act="cart" data-id="${id}">${ic('cart')} Añadir</button>`}<button class="link" data-act="wish" data-id="${id}">Quitar</button></div></li>`; }).join('')}</ul>`
+    : empty('Tu lista de deseos está vacía', 'Guarda juegos desde su ficha y te avisaremos cuando bajen de precio.', '<a class="btn" href="#/catalogo?oferta=1">Ver ofertas</a>'),
+  historial: () => S.orders.length ? `<div class="table-wrap"><table class="table"><thead><tr><th scope="col">Pedido</th><th scope="col">Fecha</th><th scope="col">Juegos</th><th scope="col">Método</th><th scope="col" class="num">Total</th></tr></thead><tbody>${S.orders.map(o => `<tr><td><a href="#/confirmacion/${o.id}">${o.id}</a></td><td>${day.format(new Date(o.date))}</td><td>${o.items.map(i => esc(G[i.id].title)).join(', ')}</td><td>${PAY.find(m => m.id === o.method)?.name || ''}</td><td class="num">${usd.format(o.total)}</td></tr>`).join('')}</tbody></table></div>`
+    : empty('Todavía no hay compras', 'Aquí verás cada pedido con su recibo.', '<a class="btn" href="#/catalogo">Explorar juegos</a>'),
+  ajustes: () => {
+    const p = S.prefs, u = S.user, chk = k => (p[k] ? ' checked' : '');
+    return `<div class="settings">
+      <form class="form" data-form="profile"><h2 class="h2">Perfil</h2>
+        <label class="field"><span>Nombre de usuario</span><input name="name" value="${esc(u.name)}" autocomplete="nickname" required></label>
+        <label class="field"><span>Correo</span><input name="email" type="email" value="${esc(u.email)}" autocomplete="email" required></label>
+        <label class="field"><span>País</span><select name="country">${countryOptions(u.country)}</select></label>
+        <button class="btn">Guardar perfil</button><p class="status" role="status"></p></form>
+      <form class="form" data-form="prefs"><h2 class="h2">Correos de Bravo</h2>
+        <p class="note">Elige qué te escribimos y cada cuánto. Puedes cambiarlo cuando quieras.</p>
+        <label class="check"><input type="checkbox" name="deals"${chk('deals')}> <span>Ofertas de juegos en mi lista de deseos</span></label>
+        <label class="check"><input type="checkbox" name="latam"${chk('latam')}> <span>Lanzamientos de estudios latinoamericanos</span></label>
+        <label class="check"><input type="checkbox" name="recs"${chk('recs')}> <span>Recomendaciones según mis géneros</span></label>
+        <fieldset class="field"><legend>Géneros favoritos</legend><div class="chips">${genres().map(t => `<label class="chip"><input type="checkbox" name="genres" value="${t}"${p.genres.includes(t) ? ' checked' : ''}><span>${t}</span></label>`).join('')}</div></fieldset>
+        <label class="field"><span>Frecuencia</span><select name="freq">${options([['semanal', 'Una vez por semana'], ['mensual', 'Una vez al mes']], p.freq)}</select></label>
+        <button class="btn">Guardar preferencias</button><p class="status" role="status"></p></form>
+      <section class="session"><h2 class="h2">Sesión</h2><div class="actions"><button class="btn btn--ghost" data-act="logout">Cerrar sesión</button><button class="btn btn--ghost" data-act="reset">Borrar datos de la demo</button></div></section>
+    </div>`;
+  },
+};
+
+function account(tab) {
+  if (!S.user) return render('Tu cuenta', `<div class="page page--narrow">${empty('Tu biblioteca te espera', 'Ingresa o crea una cuenta para ver tus juegos, tu lista de deseos y tu historial.', '<a class="btn" href="#/ingresar?volver=cuenta">Ingresar</a><a class="btn btn--ghost" href="#/ingresar?modo=registro&volver=cuenta">Crear cuenta</a>')}</div>`);
+  if (!tabs[tab]) tab = 'biblioteca';
+  const counts = { biblioteca: S.lib.length, deseos: S.wish.length, historial: S.orders.length };
+  const labels = { biblioteca: 'Biblioteca', deseos: 'Lista de deseos', historial: 'Historial', ajustes: 'Ajustes' };
+  render(labels[tab], `<div class="page">
+    <header class="page-head"><h1>Hola, ${esc(S.user.name)}</h1></header>
+    <nav class="tabs" aria-label="Tu cuenta">${Object.keys(tabs).map(t => `<a href="#/cuenta/${t}"${t === tab ? ' aria-current="page"' : ''}>${labels[t]}${t in counts ? ` <span class="tab-n">${counts[t]}</span>` : ''}</a>`).join('')}</nav>
+    ${tabs[tab]()}
+  </div>`);
+}
+
+function help() {
+  render('Pagos y ayuda', `<div class="page page--read">
+    <header class="page-head page-head--lede"><h1>Pagos, seguridad y ayuda</h1><p>Lo que necesitas saber antes de comprar: cómo pagar, cómo cuidamos tus datos y qué pasa si algo sale mal.</p></header>
+    <section class="help-sec"><h2>Cómo puedes pagar</h2><p>La disponibilidad de cada método depende de tu país. En esta demo ninguno realiza cobros.</p>
+      <ul class="pay-list">${PAY.map(m => `<li><strong>${m.name}</strong><span>${m.desc}</span></li>`).join('')}</ul></section>
+    <section class="help-sec"><h2>Tus datos, protegidos</h2><ul class="ticks">
+      <li>El pago se procesa en la pasarela del proveedor; Bravo nunca guarda los datos de tu tarjeta.</li>
+      <li>Toda la navegación viaja cifrada por HTTPS.</li>
+      <li>Para crear tu cuenta solo pedimos nombre, correo y contraseña.</li>
+      <li>Puedes borrar tu cuenta y tus datos desde Ajustes cuando quieras.</li></ul></section>
+    <section class="help-sec"><h2>Reembolsos</h2><p>Puedes pedir el reembolso de un juego dentro de los <strong>14 días</strong> posteriores a la compra si lo jugaste <strong>menos de 2 horas</strong>. Te devolvemos el dinero por el mismo método de pago.</p>
+      <ol class="howto"><li>Abre <a href="#/cuenta/historial">tu historial de compras</a> y copia el número de pedido.</li><li>Escríbenos desde el formulario de abajo eligiendo «Reembolso».</li><li>Te respondemos en un máximo de 48 horas hábiles.</li></ol></section>
+    <section class="help-sec"><h2>Preguntas frecuentes</h2>${FAQ.map(([q, a]) => `<details class="faq"><summary>${q}${ic('close')}</summary><p>${a}</p></details>`).join('')}</section>
+    <section class="help-sec"><h2>Escríbenos</h2>
+      <form class="form" data-form="contact">
+        <label class="field"><span>Correo</span><input name="email" type="email" autocomplete="email" value="${esc(S.user?.email)}" required></label>
+        <label class="field"><span>Motivo</span><select name="topic">${options([['pago', 'Problema con un pago'], ['reembolso', 'Reembolso'], ['acceso', 'No puedo acceder a un juego'], ['otro', 'Otro']], '')}</select></label>
+        <label class="field"><span>Mensaje</span><textarea name="msg" rows="5" required placeholder="Cuéntanos qué pasó e incluye tu número de pedido si lo tienes."></textarea></label>
+        <button class="btn">Enviar mensaje</button><p class="status" role="status"></p>
+      </form></section>
+  </div>`);
+}
+
+function publish() {
+  render('Publica tu juego', `<section class="band s-b pub-top"><i class="hero-bar" aria-hidden="true"></i><div class="band-in">
+      <h1>Publica tu juego en Bravo</h1>
+      <p class="lede">Una vitrina para estudios latinoamericanos, frente a jugadores de toda la región que pagan con sus métodos de siempre.</p>
+      <button class="btn btn--ink" data-act="toForm">Postular mi juego</button>
+    </div></section>
+    <div class="page page--tight">
+      ${secHead('Qué te ofrece Bravo')}
+      <ul class="why">
+        <li><h3>Vitrina regional</h3><p>Tu estudio aparece en «Hecho en Latinoamérica» y en cada ficha, con tu ciudad y tu historia.</p></li>
+        <li><h3>Precios por región</h3><p>Defines tu precio en USD y te sugerimos rangos para cada país.</p></li>
+        <li><h3>Pagos locales</h3><p>Tus jugadores pagan con tarjeta, billetera digital, transferencia o efectivo.</p></li>
+        <li><h3>Reseñas verificadas</h3><p>Solo opinan quienes compraron tu juego, y ves tus ventas por país.</p></li>
+      </ul>
+      ${secHead('Cómo funciona')}
+      <ol class="steps-row">
+        <li><b>1</b><h3>Postula</h3><p>Cuéntanos de tu juego y comparte una build o un tráiler.</p></li>
+        <li><b>2</b><h3>Revisión</h3><p>El equipo de curaduría prueba el juego y acuerda contigo precio y fecha.</p></li>
+        <li><b>3</b><h3>Lanzamiento</h3><p>Publicamos tu ficha y la destacamos en la tienda y en redes.</p></li>
+      </ol>
+      <p class="note">Las condiciones comerciales se definirán con los primeros estudios.</p>
+      <section id="postular">${secHead('Postula tu juego')}
+        <form class="form form--wide" data-form="publish">
+          <label class="field"><span>Nombre del estudio</span><input name="studio" autocomplete="organization" required></label>
+          <label class="field"><span>País</span><select name="country" required>${countryOptions('')}</select></label>
+          <label class="field"><span>Correo de contacto</span><input name="email" type="email" autocomplete="email" required></label>
+          <label class="field"><span>Nombre del juego</span><input name="game" required></label>
+          <label class="field"><span>Enlace a tráiler o build</span><input name="url" type="url" placeholder="https://"></label>
+          <label class="field"><span>Etapa</span><select name="stage">${options([['desarrollo', 'En desarrollo'], ['demo', 'Demo jugable'], ['lanzado', 'Ya lanzado']], '')}</select></label>
+          <label class="field full"><span>Cuéntanos de tu juego</span><textarea name="pitch" rows="5" minlength="30" required placeholder="Género, qué lo hace único y en qué plataformas está."></textarea></label>
+          <div class="full"><button class="btn btn--lg">Enviar postulación</button></div>
+        </form>
+      </section>
+    </div>`);
+}
+
+function notFound() {
+  render('No encontrado', `<div class="page page--narrow"><div class="empty"><h1>Esta sesión no existe</h1><p>La página que buscas no está en Bravo.</p><a class="btn" href="#/">Volver al inicio</a></div></div>`);
+}
+
+// ---------- rutas ----------
+const routes = { '': home, catalogo: catalog, juego: game, estudios: studios, estudio: studio, carrito: cart, pagar: checkout, confirmacion: confirmation, ingresar: login, cuenta: account, ayuda: help, publicar: publish };
+let started = false;
+
+function route(keep) {
+  const h = location.hash || '#/';
+  if (!h.startsWith('#/')) return; // anclas internas, p. ej. «Saltar al contenido»
+  const [path, qs] = h.slice(2).split('?');
+  const [name = '', arg] = path.split('/');
+  const p = new URLSearchParams(qs);
+  (routes[name] || notFound)(arg && decodeURIComponent(arg), p);
+  const current = name === 'catalogo' ? (p.get('oferta') ? '#/catalogo?oferta=1' : '#/catalogo') : name === 'estudio' ? '#/estudios' : '#/' + name;
+  $$('.nav a').forEach(a => a.toggleAttribute('aria-current', a.getAttribute('href') === current));
+  if (keep) return;
+  scrollTo(0, 0);
+  if (started) $('h1', app)?.focus({ preventScroll: true });
+  started = true;
+}
+
+// Vuelve a pintar la pantalla actual sin mover el scroll y devuelve el foco al control equivalente.
+function refresh(...selectors) {
+  const y = scrollY;
+  route(true);
+  scrollTo(0, y);
+  (selectors.map(s => s && $(s)).find(Boolean) || $('h1', app))?.focus({ preventScroll: true });
+}
+
+function chrome() {
+  const n = S.cart.length, badge = $('[data-cart-count]');
+  if (badge.textContent !== String(n) && n) { badge.classList.remove('stamp'); void badge.offsetWidth; badge.classList.add('stamp'); }
+  badge.textContent = n;
+  badge.hidden = !n;
+  $('[data-cart]').setAttribute('aria-label', `Carrito, ${plural(n, 'juego')}`);
+  $('[data-account]').setAttribute('aria-label', S.user ? `Cuenta de ${S.user.name}` : 'Ingresar o crear cuenta');
+}
+
+// ---------- acciones ----------
+const add = id => { if (!S.cart.includes(id)) S.cart.push(id); save('cart'); };
+const actions = {
+  cart: id => { add(id); say(`${G[id].title} se añadió al carrito`); },
+  buy: id => { add(id); chrome(); location.hash = '#/pagar'; return true; },
+  uncart: id => { S.cart = S.cart.filter(x => x !== id); save('cart'); say(`${G[id].title} se quitó del carrito`); },
+  wish: id => {
+    S.wish = S.wish.includes(id) ? S.wish.filter(x => x !== id) : [...S.wish, id];
+    save('wish');
+    say(S.wish.includes(id) ? 'Guardado en tu lista de deseos' : 'Quitado de tu lista de deseos');
+  },
+  download: id => { $(`[data-status="${id}"]`).textContent = 'Descarga simulada: en la versión real empezaría a bajar el instalador.'; return true; },
+  logout: () => { S.user = null; save('user'); chrome(); location.hash = '#/'; return true; },
+  reset: () => {
+    try { Object.keys(localStorage).filter(k => k.startsWith('bravo.')).forEach(k => localStorage.removeItem(k)); } catch { /* nada que borrar */ }
+    location.hash = '#/';
+    location.reload();
+    return true;
+  },
+  toForm: () => {
+    $('#postular').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    $('#postular input').focus({ preventScroll: true });
+    return true;
+  },
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const { act, id } = el.dataset;
+  if (actions[act](id)) return;
+  chrome();
+  refresh(`[data-act="${act}"][data-id="${id}"]`, `[data-after~="${act}"]`);
+});
+
+const status = (f, msg) => { $('.status', f).textContent = msg; };
+const forms = {
+  search: (f, d) => { location.hash = '#/catalogo?q=' + encodeURIComponent(d.get('q').trim()); f.reset(); },
+  filters: () => {},
+  login: (f, d) => {
+    const email = d.get('email').trim();
+    const known = S.user?.email === email ? S.user : null;
+    S.user = { name: (d.get('name') || known?.name || email.split('@')[0]).trim(), email, country: d.get('country') || known?.country || '' };
+    if (d.get('news')) S.prefs.recs = true;
+    save('user', 'prefs');
+    chrome();
+    location.hash = '#/' + f.dataset.back;
+  },
+  checkout: (f, d) => {
+    if (!S.user) S.user = { name: d.get('name').trim(), email: d.get('email').trim(), country: '' };
+    const id = 'BRV-' + Date.now().toString(36).toUpperCase().slice(-6);
+    S.orders.unshift({ id, date: new Date().toISOString(), items: S.cart.map(i => ({ id: i, price: final(G[i]) })), total: total(S.cart), method: d.get('method') });
+    S.lib = [...new Set([...S.lib, ...S.cart])];
+    S.wish = S.wish.filter(x => !S.cart.includes(x));
+    S.cart = [];
+    save('user', 'orders', 'lib', 'wish', 'cart');
+    chrome();
+    location.hash = '#/confirmacion/' + id;
+  },
+  review: (f, d) => {
+    const id = f.dataset.id;
+    S.reviews[id] = [{ name: S.user?.name || 'Jugador', text: d.get('text').trim(), rec: d.get('rec') === '1', date: new Date().toISOString() }, ...(S.reviews[id] || [])];
+    save('reviews');
+    say('Reseña publicada');
+    refresh('#resenas h2');
+  },
+  profile: (f, d) => {
+    Object.assign(S.user, { name: d.get('name').trim(), email: d.get('email').trim(), country: d.get('country') });
+    save('user');
+    chrome();
+    status(f, 'Perfil guardado.');
+  },
+  prefs: (f, d) => {
+    S.prefs = { deals: d.has('deals'), latam: d.has('latam'), recs: d.has('recs'), freq: d.get('freq'), genres: d.getAll('genres') };
+    save('prefs');
+    status(f, 'Preferencias guardadas.');
+  },
+  contact: f => { f.reset(); status(f, 'Mensaje enviado (demo). Te responderíamos en 24 a 48 horas hábiles.'); },
+  newsletter: f => { f.reset(); status(f, 'Listo: te escribiremos con ofertas y lanzamientos (demo).'); },
+  publish: f => {
+    f.outerHTML = '<div class="done" tabindex="-1"><h3>Postulación recibida</h3><p>Gracias. En la versión real, el equipo de curaduría revisaría tu juego y te escribiría en un plazo de dos semanas.</p></div>';
+    $('.done').focus();
+  },
+};
+
+document.addEventListener('submit', e => {
+  const f = e.target, handler = forms[f.dataset.form];
+  if (!handler) return;
+  e.preventDefault();
+  handler(f, new FormData(f));
+});
+
+document.addEventListener('input', e => {
+  const f = e.target.closest('[data-form="filters"]');
+  if (!f) return;
+  const p = new URLSearchParams([...new FormData(f)].filter(([, v]) => v));
+  history.replaceState(null, '', '#/catalogo' + (p.size ? '?' + p : ''));
+  results(p);
+});
+
+// «/» lleva a la búsqueda desde cualquier pantalla.
+addEventListener('keydown', e => {
+  if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || e.target.closest('input, textarea, select')) return;
+  const box = [$('#cq'), $('#q')].find(x => x?.offsetParent);
+  e.preventDefault();
+  if (box) box.focus();
+  else location.hash = '#/catalogo';
+});
+
+addEventListener('hashchange', () => route());
+chrome();
+route();
+</script>
 </body>
 </html>

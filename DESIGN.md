@@ -12,34 +12,34 @@ colors:
   paper-light: "#FBF5E8"
 typography:
   display:
-    fontFamily: "Anton, 'Arial Narrow', sans-serif"
+    fontFamily: "Anton, 'Anton Fallback', sans-serif"
     fontSize: "clamp(3.4rem, 8.6vw, 6rem)"
     fontWeight: 400
     lineHeight: 0.86
     letterSpacing: "-0.005em"
   headline:
-    fontFamily: "Anton, 'Arial Narrow', sans-serif"
+    fontFamily: "Anton, 'Anton Fallback', sans-serif"
     fontSize: "clamp(2.6rem, 7vw, 5rem)"
     fontWeight: 400
     lineHeight: 0.95
   section:
-    fontFamily: "Anton, 'Arial Narrow', sans-serif"
+    fontFamily: "Anton, 'Anton Fallback', sans-serif"
     fontSize: "clamp(1.9rem, 3.6vw, 2.8rem)"
     fontWeight: 400
     lineHeight: 0.95
   title:
-    fontFamily: "'Barlow Condensed', 'Arial Narrow', sans-serif"
+    fontFamily: "'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif"
     fontSize: "1.25rem"
     fontWeight: 700
     lineHeight: 1.05
     letterSpacing: "0.02em"
   body:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "Barlow, 'Barlow Fallback', sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.55
   label:
-    fontFamily: "'Barlow Condensed', 'Arial Narrow', sans-serif"
+    fontFamily: "'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif"
     fontSize: "0.85rem"
     fontWeight: 700
     letterSpacing: "0.09em"
@@ -124,9 +124,9 @@ Paleta de title card: tres campos saturados sobre tinta y papel.
 
 ## Typography
 
-**Display Font:** Anton (con Arial Narrow)
-**Body Font:** Barlow (con system-ui)
-**Label Font:** Barlow Condensed (con Arial Narrow)
+**Display Font:** Anton (respaldo: Arial con size-adjust 70.9%)
+**Body Font:** Barlow 400 y 600 (respaldo: Arial con size-adjust 95.1% / 90.4%)
+**Label Font:** Barlow Condensed 600 y 700 (respaldo: Arial Bold con size-adjust 67.5%)
 
 **Character:** Anton pone la voz de cartel, comprimida y pesada; Barlow Condensed rotula controles y metadatos con el mismo esqueleto que el Barlow de lectura.
 

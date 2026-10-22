@@ -28,7 +28,10 @@ No necesita instalación: abre `index.html` en el navegador.
 
 ## Archivos
 
-- `index.html`: estructura, cabecera y pie.
-- `styles.css`: sistema visual.
-- `data.js`: juegos, estudios, métodos de pago y preguntas frecuentes. Edita aquí el catálogo.
-- `app.js`: rutas y pantallas.
+Todo vive en `index.html`, en este orden:
+
+- `<style>`: fuentes y sistema visual.
+- Primer `<script>`: catálogo (juegos, estudios, métodos de pago y preguntas frecuentes). Edita aquí el catálogo.
+- Segundo `<script>`: rutas y pantallas.
+
+Va en un solo archivo por rendimiento: GitHub Pages sirve cada archivo con solo 10 minutos de caché y no permite cambiarlo, y cada hoja o script aparte bloquea el primer pintado. Las fuentes se cargan directo desde `fonts.gstatic.com` (caché de un año); las tres de la primera pantalla van con `preload`.
